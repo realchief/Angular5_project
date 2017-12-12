@@ -178,6 +178,17 @@ export class AdxApiAuthProvider extends NbAbstractAuthProvider {
         return res;
       })
       .map((res) => {
+        const result = getDeepFromObject(res.body, 'data');
+        if (result) {
+          // something went wrong
+          return new NbAuthResult(
+            false,
+            res,
+            this.getConfigValue('login.redirect.failure'),
+            [],
+            this.getConfigValue('messages.getter')('login', res)
+          )
+        }
         return new NbAuthResult(
           true,
           res,
