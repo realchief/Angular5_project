@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Campaign } from '../models/campaign';
-import { InteractApiService } from '../api/interact-api.service';
+import { AdxApiService } from '../api/adx-api.service';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/delay';
 
@@ -34,7 +34,7 @@ export class CampaignDataService {
   }];
 
   constructor(
-    private api: InteractApiService
+    private api: AdxApiService
   ) {
   }
 

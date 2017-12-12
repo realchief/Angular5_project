@@ -55,4 +55,10 @@ export class HeaderComponent implements OnInit {
   startSearch() {
     this.analyticsService.trackEvent('startSearch');
   }
+
+  onMenuClick($event) {
+    if ($event.title === 'Log out') {
+      this.authService.logout('adxApi');
+    }
+  }
 }

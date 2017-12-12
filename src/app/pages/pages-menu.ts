@@ -2,15 +2,15 @@ import { NbMenuItem } from '@nebular/theme';
 
 export const MENU_ITEMS: NbMenuItem[] = [
   {
+    title: 'Campaigns',
+    icon: 'nb-grid-b-outline',
+    link: '/pages/campaigns',
+  },
+  {
     title: 'Dashboard',
     icon: 'nb-home',
     link: '/pages/dashboard',
     home: true,
-  },
-  {
-    title: 'Campaigns',
-    icon: 'nb-home',
-    link: '/pages/campaigns',
   },
   {
     title: 'FEATURES',

@@ -3,7 +3,7 @@ import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest } from '@angular/c
 import { Observable } from 'rxjs/Observable';
 
 @Injectable()
-export class InteractApiInterceptor implements HttpInterceptor {
+export class AdxApiInterceptor implements HttpInterceptor {
   intercept (req: HttpRequest<any>, next: HttpHandler):
   Observable<HttpEvent<any>> {
     const authReq = req.clone({

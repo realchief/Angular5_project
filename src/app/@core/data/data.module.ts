@@ -1,5 +1,6 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ApiModule } from '../api/api.module';
 
 import { UserService } from './users.service';
 import { ElectricityService } from './electricity.service';
@@ -20,6 +21,7 @@ const SERVICES = [
 @NgModule({
   imports: [
     CommonModule,
+    ApiModule,
   ],
   providers: [
     ...SERVICES,

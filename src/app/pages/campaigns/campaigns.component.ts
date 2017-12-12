@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
 
-import { SmartTableService } from '../../@core/data/smart-table.service';
+import { CampaignDataService } from '../../@core/data/campaign-data.service';
 
 @Component({
   selector: 'ngx-campaings',
@@ -30,36 +30,44 @@ export class CampaignsComponent {
       confirmDelete: true,
     },
     columns: {
+      name: {
+        title: 'Campaign',
+        type: 'string',
+      },
+      budget: {
+        title: 'Budget',
+        type: 'string',
+      },
+      remaining: {
+        title: 'Remaining',
+        type: 'string',
+      },
+      spendYd: {
+        title: 'Spend Yd',
+        type: 'string',
+      },
+      pace_td: {
+        title: 'Spend Td',
+        type: 'string',
+      },
       id: {
         title: 'ID',
         type: 'number',
       },
-      firstName: {
-        title: 'First Name',
-        type: 'string',
-      },
-      lastName: {
-        title: 'Last Name',
-        type: 'string',
-      },
-      username: {
-        title: 'Username',
-        type: 'string',
-      },
-      email: {
-        title: 'E-mail',
-        type: 'string',
-      },
-      age: {
-        title: 'Age',
+      status: {
+        title: 'Status',
         type: 'number',
+      },
+      checkList: {
+        title: 'Checklist',
+        type: 'string',
       },
     },
   };
 
   source: LocalDataSource = new LocalDataSource();
 
-  constructor(private service: SmartTableService) {
+  constructor(private service: CampaignDataService) {
     const data = this.service.getData();
     this.source.load(data);
   }

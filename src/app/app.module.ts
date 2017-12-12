@@ -19,6 +19,8 @@ import { AdxApiAuthProvider, NbAuthModule } from './@theme/components/auth';
 import { NB_AUTH_TOKEN_WRAPPER_TOKEN, AdxApiAuthToken } from './@theme/components/auth';
 import { AuthGuard } from './auth-guard.service';
 
+import { environment } from '../environments/environment';
+
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -32,10 +34,10 @@ import { AuthGuard } from './auth-guard.service';
     CoreModule.forRoot(),
     NbAuthModule.forRoot({
       providers: {
-        email: {
+        adxApi: {
           service: AdxApiAuthProvider,
           config: {
-            baseEndpoint: 'https://api.adx1.com/v1.0.1',
+            baseEndpoint: environment.apiUrl,
             login: {
               endpoint: '/auth',
               method: 'post',

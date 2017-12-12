@@ -11,7 +11,7 @@ import 'rxjs/add/observable/throw';
 const API_URL = environment.apiUrl;
 
 @Injectable()
-export class InteractApiService {
+export class AdxApiService {
 
   constructor(
     private http: Http
