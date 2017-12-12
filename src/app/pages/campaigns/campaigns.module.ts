@@ -3,7 +3,7 @@ import { Ng2SmartTableModule } from 'ng2-smart-table';
 
 import { ThemeModule } from '../../@theme/theme.module';
 import { CampaignsRoutingModule, routedComponents } from './campaigns-routing.module';
-import { SmartTableService } from '../../@core/data/smart-table.service';
+import { CampaignDataService } from '../../@core/data/campaign-data.service';
 
 @NgModule({
   imports: [
@@ -15,7 +15,7 @@ import { SmartTableService } from '../../@core/data/smart-table.service';
     ...routedComponents,
   ],
   providers: [
-    SmartTableService,
+    CampaignDataService,
   ],
 })
 export class CampaignsModule { }

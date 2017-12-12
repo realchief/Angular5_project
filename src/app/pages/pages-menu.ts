@@ -5,6 +5,16 @@ export const MENU_ITEMS: NbMenuItem[] = [
     title: 'Campaigns',
     icon: 'nb-grid-b-outline',
     link: '/pages/campaigns',
+    children: [
+      {
+        title: 'Campaigns',
+        link: '/pages/campaigns/list',
+      },
+      {
+        title: 'New Campaign',
+        link: '/pages/campaigns/create',
+      },
+    ],    
   },
   {
     title: 'Dashboard',

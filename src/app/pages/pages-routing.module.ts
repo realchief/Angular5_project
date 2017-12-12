@@ -36,7 +36,7 @@ const routes: Routes = [{
     loadChildren: './tables/tables.module#TablesModule',
   }, {
     path: '',
-    redirectTo: 'dashboard',
+    redirectTo: 'camapigns',
     pathMatch: 'full',
   }],
 }];
