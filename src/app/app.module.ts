@@ -14,7 +14,10 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ThemeModule } from './@theme/theme.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { ServiceModule } from './services/services.module';
+
+import { AdxApiAuthProvider, NbAuthModule } from './@theme/components/auth';
+import { NB_AUTH_TOKEN_WRAPPER_TOKEN, AdxApiAuthToken } from './@theme/components/auth';
+import { AuthGuard } from './auth-guard.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -27,11 +30,26 @@ import { ServiceModule } from './services/services.module';
     NgbModule.forRoot(),
     ThemeModule.forRoot(),
     CoreModule.forRoot(),
-    ServiceModule.forRoot(),
+    NbAuthModule.forRoot({
+      providers: {
+        email: {
+          service: AdxApiAuthProvider,
+          config: {
+            baseEndpoint: 'https://api.adx1.com/v1.0.1',
+            login: {
+              endpoint: '/auth',
+              method: 'post',
+            }
+          }
+        }
+      }
+    })
   ],
   bootstrap: [AppComponent],
   providers: [
     { provide: APP_BASE_HREF, useValue: '/' },
+    { provide: NB_AUTH_TOKEN_WRAPPER_TOKEN, useClass: AdxApiAuthToken },
+    AuthGuard,
   ],
 })
 export class AppModule {
