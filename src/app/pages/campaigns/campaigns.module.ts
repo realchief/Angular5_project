@@ -3,6 +3,7 @@ import { Ng2SmartTableModule } from 'ng2-smart-table';
 
 import { ThemeModule } from '../../@theme/theme.module';
 import { CampaignsRoutingModule, routedComponents } from './campaigns-routing.module';
+import { CampaignModule, campaignSubComponents } from './campaign/campaign.module';
 import { CampaignDataService } from '../../@core/data/campaign-data.service';
 
 @NgModule({
@@ -13,6 +14,7 @@ import { CampaignDataService } from '../../@core/data/campaign-data.service';
   ],
   declarations: [
     ...routedComponents,
+    ...campaignSubComponents,
   ],
   providers: [
     CampaignDataService,

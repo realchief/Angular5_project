@@ -57,8 +57,13 @@ export class HeaderComponent implements OnInit {
   }
 
   onMenuClick($event) {
-    if ($event.title === 'Log out') {
-      this.authService.logout('adxApi');
+    switch ($event.title) {
+      case 'Log out':
+        this.authService.logout('adxApi');
+        return;
+      default:
+        // Do nothing
+        console.log($event.title);
     }
   }
 }

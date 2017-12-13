@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'ngx-campaigns',
+  selector: 'adx-campaigns',
   template: `<router-outlet></router-outlet>`,
 })
 export class CampaignsComponent {

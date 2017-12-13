@@ -5,7 +5,7 @@ import { LocalDataSource } from 'ng2-smart-table';
 import { CampaignDataService } from '../../../@core/data/campaign-data.service';
 
 @Component({
-  selector: 'ngx-campaings-table',
+  selector: 'adx-campaings-table',
   templateUrl: './campaigns-table.component.html',
   styles: [`
     nb-card {

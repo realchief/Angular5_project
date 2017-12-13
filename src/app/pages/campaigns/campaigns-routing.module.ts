@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { CampaignsComponent } from './campaigns.component';
 import { CampaignsTableComponent } from './campaigns-table/campaigns-table.component';
-import { CampaignFormComponent } from './campaign-form/campaign-form.component';
+import { CampaignComponent } from './campaign/campaign.component';
 
 const routes: Routes = [{
   path: '',
@@ -13,10 +13,10 @@ const routes: Routes = [{
     component: CampaignsTableComponent,
   }, {
     path: 'create',
-    component: CampaignFormComponent,
+    component: CampaignComponent,
   }, {
     path: 'edit',
-    component: CampaignFormComponent,
+    component: CampaignComponent,
   }],
 }];
 
@@ -29,5 +29,5 @@ export class CampaignsRoutingModule { }
 export const routedComponents = [
   CampaignsComponent,
   CampaignsTableComponent,
-  CampaignFormComponent,
+  CampaignComponent,
 ];

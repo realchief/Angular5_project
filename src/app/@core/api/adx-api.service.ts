@@ -18,7 +18,7 @@ export class AdxApiService {
   ) {
   }
 
-  public getAllCampaigns(): Observable<Campaign[]> {
+  public getCampaigns(limit: number, offset: number): Observable<Campaign[]> {
     return this.http
       .get(API_URL + '/campaigns')
       .map(response => {

@@ -43,22 +43,22 @@ export class CampaignDataService {
     return this.api.createCampaign(campaign);
   }
 
-  // DELETE /todos/:id
+  // DELETE /campaigns/:id
   deleteCampaignById(campaignId: number): Observable<Campaign> {
     return this.api.deleteCampaignById(campaignId);
   }
 
-  // PUT /todos/:id
+  // PUT /campaigns/:id
   updateTodo(campaign: Campaign): Observable<Campaign> {
     return this.api.updateCampaign(campaign);
   }
 
-  // GET /todos
-  getAllCampaings(): Observable<Campaign[]> {
-    return this.api.getAllCampaigns();
+  // GET /campaigns
+  getCampaings(limit: number, offset: number): Observable<Campaign[]> {
+    return this.api.getCampaigns(limit, offset);
   }
 
-  // GET /todos/:id
+  // GET /campaigns/:id
   getCampaignById(campaignId: number): Observable<Campaign> {
     return this.api.getCampaignById(campaignId);
   }
