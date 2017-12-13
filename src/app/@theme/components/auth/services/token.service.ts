@@ -93,20 +93,21 @@ export class NbAuthJWTToken extends NbAuthSimpleToken {
  * }
  */
 @Injectable()
-export class AdxApiAuthToken {
+export class AdxApiAuthToken extends NbAuthSimpleToken {
 
-  protected token: any = {};
+  // protected token: any = {};
 
-  setValue(token: string) {
-    this.token = JSON.parse(token);
-  }
+  // setValue(token: string) {
+  //   this.token = JSON.parse(token);
+  // }
 
   /**
    * Returns the token value
    * @returns string
    */
   getValue() {
-    return JSON.stringify(this.token);
+    // return JSON.stringify(this.token);
+    return this.token;
   }
 
   /**
@@ -202,6 +203,7 @@ export class NbTokenService {
 
       getter: (): Observable<NbAuthSimpleToken> => {
         const tokenValue = localStorage.getItem(this.getConfigValue('token.key'));
+        // console.log(tokenValue);
         this.tokenWrapper.setValue(tokenValue);
         return Observable.of(this.tokenWrapper);
       },

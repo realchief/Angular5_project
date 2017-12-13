@@ -8,6 +8,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { CoreModule } from './@core/core.module';
 
 import { AppComponent } from './app.component';
@@ -17,7 +18,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AdxApiAuthProvider, NbAuthModule } from './@theme/components/auth';
 import { NB_AUTH_TOKEN_WRAPPER_TOKEN, AdxApiAuthToken } from './@theme/components/auth';
-import { AuthGuard } from './auth-guard.service';
+import { AuthGuard, AdxApiInterceptor } from './@theme/components/auth/services';
 
 import { environment } from '../environments/environment';
 
@@ -28,6 +29,7 @@ import { environment } from '../environments/environment';
     BrowserAnimationsModule,
     HttpModule,
     AppRoutingModule,
+    HttpClientModule,
 
     NgbModule.forRoot(),
     ThemeModule.forRoot(),
@@ -52,6 +54,7 @@ import { environment } from '../environments/environment';
     { provide: APP_BASE_HREF, useValue: '/' },
     { provide: NB_AUTH_TOKEN_WRAPPER_TOKEN, useClass: AdxApiAuthToken },
     AuthGuard,
+    { provide: HTTP_INTERCEPTORS, useClass: AdxApiInterceptor, multi: true }
   ],
 })
 export class AppModule {

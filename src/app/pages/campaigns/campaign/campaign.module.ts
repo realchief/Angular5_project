@@ -15,4 +15,6 @@ export class CampaignModule { }
 
 export const campaignSubComponents = [
   CampaignFormComponent,
+  AttachSiteListsComponent,
+  AdSetsComponent,
 ];

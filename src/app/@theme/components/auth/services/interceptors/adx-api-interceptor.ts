@@ -1,23 +1,23 @@
 import { Inject, Injectable, Injector } from '@angular/core';
-import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
+import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/switchMap';
 
 import { NbAuthService } from '../auth.service';
-import { NbAuthJWTToken } from '../token.service';
+import { AdxApiAuthToken } from '../token.service';
 import { NB_AUTH_INTERCEPTOR_HEADER } from '../../auth.options';
 
 @Injectable()
-export class AdxAuthSimpleInterceptor implements HttpInterceptor {
+export class AdxApiInterceptor implements HttpInterceptor {
 
   constructor(private injector: Injector,
               @Inject(NB_AUTH_INTERCEPTOR_HEADER) protected headerName: string = 'Authorization') {
   }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-
     return this.authService.getToken()
-      .switchMap((token: NbAuthJWTToken) => {
+      .switchMap((token: AdxApiAuthToken) => {
+        console.log(token);
         if (token && token.getValue()) {
           req = req.clone({
             setHeaders: {
@@ -25,7 +25,18 @@ export class AdxAuthSimpleInterceptor implements HttpInterceptor {
             },
           });
         }
-        return next.handle(req);
+        return next.handle(req).do((event: HttpEvent<any>) => {
+          if (event instanceof HttpResponse) {
+            // do stuff with response if you want
+          }
+        }, (err: any) => {
+          if (err instanceof HttpErrorResponse) {
+            if (err.status === 401) {
+              // redirect to the login route
+              // or show a modal
+            }
+          }
+        });
       });
   }
 

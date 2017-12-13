@@ -1,12 +1,16 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
 
-import { Http, Response } from '@angular/http';
-import { Campaign } from '../models/campaign';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
+
+import { Campaign } from '../models';
+import {
+  GetCampaignsInterface,
+} from './adx-api.interfaces';
 
 const API_URL = environment.apiUrl;
 
@@ -14,34 +18,34 @@ const API_URL = environment.apiUrl;
 export class AdxApiService {
 
   constructor(
-    private http: Http
+    private http: HttpClient
   ) {
   }
 
   public getCampaigns(limit: number, offset: number): Observable<Campaign[]> {
+    
+    let params = new HttpParams()
+      .set('limit', String(limit))
+      .set('offset', String(offset));
+
     return this.http
-      .get(API_URL + '/campaigns')
-      .map(response => {
-        const campaigns = response.json();
-        return campaigns.map((campaign) => new Campaign(campaign));
-      })
+      .get<GetCampaignsInterface>(API_URL + '/campaigns', { params })
+      .map(result => result.data.map(campaign => new Campaign(campaign)))
       .catch(this.handleError);
   }
 
   public createCampaign(campaign: Campaign): Observable<Campaign> {
     return this.http
       .post(API_URL + '/campaigns', campaign)
-      .map(response => {
-        return new Campaign(response.json());
-      })
+      .map(() => campaign)
       .catch(this.handleError);
   }
 
   public getCampaignById(campaignId: number): Observable<Campaign> {
     return this.http
-      .get(API_URL + '/campaigns/' + campaignId)
+      .get<Campaign>(API_URL + '/campaigns/' + campaignId)
       .map(response => {
-        return new Campaign(response.json());
+        return new Campaign(response);
       })
       .catch(this.handleError);
   }
@@ -49,9 +53,7 @@ export class AdxApiService {
   public updateCampaign(campaign: Campaign): Observable<Campaign> {
     return this.http
       .put(API_URL + '/campaigns/' + campaign.id, campaign)
-      .map(response => {
-        return new Campaign(response.json());
-      })
+      .map(response => campaign)
       .catch(this.handleError);
   }
 

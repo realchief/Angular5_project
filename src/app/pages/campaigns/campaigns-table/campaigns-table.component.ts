@@ -3,6 +3,7 @@ import { Router, Params } from '@angular/router';
 import { LocalDataSource } from 'ng2-smart-table';
 
 import { CampaignDataService } from '../../../@core/data/campaign-data.service';
+import { Campaign } from '../../../@core/models/campaign';
 
 @Component({
   selector: 'adx-campaings-table',
@@ -70,8 +71,9 @@ export class CampaignsTableComponent {
   source: LocalDataSource = new LocalDataSource();
 
   constructor(private service: CampaignDataService, private router: Router) {
-    const data = this.service.getData();
-    this.source.load(data);
+    this.service.getCampaings(100, 0).subscribe(data => {
+      this.source.load(data);
+    })
   }
 
   onCreate($event): void {

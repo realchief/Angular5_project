@@ -8,7 +8,7 @@ import {
   NbRequestPasswordComponent,
   NbResetPasswordComponent,
 } from './@theme/components/auth';
-import { AuthGuard } from './auth-guard.service';
+import { AuthGuard } from './@theme/components/auth/services';
 
 const routes: Routes = [
   {
