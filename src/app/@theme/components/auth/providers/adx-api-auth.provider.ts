@@ -218,12 +218,12 @@ export class AdxApiAuthProvider extends NbAbstractAuthProvider {
   register(data?: any): Observable<NbAuthResult> {
     return Observable.of(this.createDummyResult(data))
     .delay(this.getConfigValue('delay'));
-}
+  }
 
   requestPassword(data?: any): Observable<NbAuthResult> {
     return Observable.of(this.createDummyResult(data))
     .delay(this.getConfigValue('delay'));
-}
+  }
 
   resetPassword(data: any = {}): Observable<NbAuthResult> {
     return Observable.of(this.createDummyResult(data))
@@ -237,10 +237,7 @@ export class AdxApiAuthProvider extends NbAbstractAuthProvider {
 
     return Observable.of({})
       .switchMap((res: any) => {
-        if (!url) {
-          return Observable.of(res);
-        }
-        return this.http.request(method, url, { observe: 'response' });
+        return Observable.of(res);
       })
       .map((res) => {
         if (this.getConfigValue('logout.alwaysFail')) {

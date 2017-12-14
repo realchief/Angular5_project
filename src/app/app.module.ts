@@ -36,13 +36,21 @@ import { environment } from '../environments/environment';
     CoreModule.forRoot(),
     NbAuthModule.forRoot({
       providers: {
-        adxApi: {
+        email: {
           service: AdxApiAuthProvider,
           config: {
             baseEndpoint: environment.apiUrl,
             login: {
               endpoint: '/auth',
               method: 'post',
+            },
+            logout :{
+              endpoint: '/auth',
+              method: 'delete',
+              redirect: {
+                success: '/',
+                failure: null,
+              },
             }
           }
         }

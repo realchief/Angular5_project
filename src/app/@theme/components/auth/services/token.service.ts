@@ -203,7 +203,7 @@ export class NbTokenService {
 
       getter: (): Observable<NbAuthSimpleToken> => {
         const tokenValue = localStorage.getItem(this.getConfigValue('token.key'));
-        // console.log(tokenValue);
+        console.log(tokenValue);
         this.tokenWrapper.setValue(tokenValue);
         return Observable.of(this.tokenWrapper);
       },
