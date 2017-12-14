@@ -5,7 +5,7 @@
     <a (click)="toggleSidebar()" href="#" class="navigation"><i class="nb-menu"></i></a>
     <div class="logo" (click)="goToHome()">Inter-<span>Act</span></div>
   </div>
-  <ngx-theme-switcher></ngx-theme-switcher>
+  <!-- <ngx-theme-switcher></ngx-theme-switcher> -->
 </div>
 
 <nb-actions
@@ -13,7 +13,7 @@
   class="header-container"
   [class.right]="position === 'normal'"
   [class.left]="position === 'inverse'">
-  <nb-action icon="nb-grid-b" class="toggle-layout" (click)="toggleSettings()"></nb-action>
+  <!-- <nb-action icon="nb-grid-b" class="toggle-layout" (click)="toggleSettings()"></nb-action> -->
   <nb-action>
     <nb-user
       [menu]="userMenu"
@@ -21,9 +21,14 @@
       [picture]="user?.picture"
       (menuClick)="onMenuClick($event)"></nb-user>
   </nb-action>
-  <nb-action class="control-item" disabled icon="nb-notifications"></nb-action>
-  <nb-action class="control-item" icon="nb-email"></nb-action>
+  <!-- <nb-action class="control-item" disabled icon="nb-notifications"></nb-action> -->
   <nb-action class="control-item">
-    <nb-search type="rotate-layout" (click)="startSearch()"></nb-search>
+    Your Users Funds
   </nb-action>
+  <nb-action class="control-item">
+    Add Funds
+  </nb-action>
+  <!-- <nb-action class="control-item">
+    <nb-search type="rotate-layout" (click)="startSearch()"></nb-search>
+  </nb-action> -->
 </nb-actions>

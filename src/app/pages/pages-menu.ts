@@ -17,17 +17,17 @@ export const MENU_ITEMS: NbMenuItem[] = [
     ],    
   },
   {
-    title: 'Dashboard',
+    title: 'Reports',
     icon: 'nb-home',
     link: '/pages/dashboard',
     home: true,
   },
+  // {
+  //   title: 'FEATURES',
+  //   group: true,
+  // },
   {
-    title: 'FEATURES',
-    group: true,
-  },
-  {
-    title: 'UI Features',
+    title: 'ADS',
     icon: 'nb-keypad',
     link: '/pages/ui-features',
     children: [
@@ -62,7 +62,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
     ],
   },
   {
-    title: 'Forms',
+    title: 'LISTS',
     icon: 'nb-compose',
     children: [
       {
@@ -76,7 +76,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
     ],
   },
   {
-    title: 'Components',
+    title: 'PIXELS',
     icon: 'nb-gear',
     children: [
       {
@@ -89,7 +89,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
     ],
   },
   {
-    title: 'Maps',
+    title: 'PMP DEALS',
     icon: 'nb-location',
     children: [
       {

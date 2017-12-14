@@ -6,7 +6,7 @@ import { AdSetsComponent } from './ad-sets/ad-sets.component';
 
 @NgModule({
   declarations: [
-    CampaignFormComponent,
+    CampaignFormComponent,  
     AttachSiteListsComponent,
     AdSetsComponent,
   ],

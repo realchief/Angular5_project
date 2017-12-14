@@ -4,6 +4,7 @@ import { LocalDataSource } from 'ng2-smart-table';
 
 import { CampaignDataService } from '../../../@core/data/campaign-data.service';
 import { Campaign } from '../../../@core/models/campaign';
+import { StatusRenderComponent } from './status-render-component';
 
 @Component({
   selector: 'adx-campaings-table',
@@ -37,7 +38,7 @@ export class CampaignsTableComponent {
         title: 'Campaign',
         type: 'string',
       },
-      budget: {
+      daily_budget: {
         title: 'Budget',
         type: 'string',
       },
@@ -57,9 +58,10 @@ export class CampaignsTableComponent {
         title: 'ID',
         type: 'number',
       },
-      status: {
+      active: {
         title: 'Status',
-        type: 'number',
+        type: 'custom',
+        component: StatusRenderComponent,
       },
       checkList: {
         title: 'Checklist',
