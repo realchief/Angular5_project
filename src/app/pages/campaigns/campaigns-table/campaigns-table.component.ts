@@ -81,7 +81,7 @@ export class CampaignsTableComponent {
   }
 
   onEdit($event): void {
-    this.router.navigate(['/pages/campaigns/edit', { campaign: $event.data }])
+    this.router.navigate(['/pages/campaigns/edit', { id: $event.data.id }])
   }
             
   onDeleteConfirm(event): void {

@@ -19,7 +19,16 @@ export class HeaderComponent implements OnInit {
 
   user: {};
 
-  userMenu = [{ title: 'Profile' }, { title: 'Log out' }];
+  userMenu = [
+    { title: 'Profile' },
+    { title: 'Admin Setup' },
+    { title: 'Billing History' },
+    { title: 'Payments' },
+    { title: 'RTB Endpoints' },
+    { title: 'Knowledge Base' },
+    { title: 'Support' },
+    { title: 'Log out' },
+  ];
   submitted: boolean = false;
   errors: string[] = [];
   messages: string[] = [];
