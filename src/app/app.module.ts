@@ -22,6 +22,29 @@ import { AuthGuard, AdxApiInterceptor } from './@theme/components/auth/services'
 
 import { environment } from '../environments/environment';
 
+const authOptions = {
+  providers: {
+    email: {
+      service: AdxApiAuthProvider,
+      config: {
+        baseEndpoint: environment.apiUrl,
+        login: {
+          endpoint: '/auth',
+          method: 'post',
+        },
+        logout :{
+          endpoint: '/auth',
+          method: 'delete',
+          redirect: {
+            success: '/auth/login',
+            failure: null,
+          },
+        }
+      }
+    }
+  }
+};
+
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -34,28 +57,7 @@ import { environment } from '../environments/environment';
     NgbModule.forRoot(),
     ThemeModule.forRoot(),
     CoreModule.forRoot(),
-    NbAuthModule.forRoot({
-      providers: {
-        email: {
-          service: AdxApiAuthProvider,
-          config: {
-            baseEndpoint: environment.apiUrl,
-            login: {
-              endpoint: '/auth',
-              method: 'post',
-            },
-            logout :{
-              endpoint: '/auth',
-              method: 'delete',
-              redirect: {
-                success: '/',
-                failure: null,
-              },
-            }
-          }
-        }
-      }
-    })
+    NbAuthModule.forRoot(authOptions)
   ],
   bootstrap: [AppComponent],
   providers: [

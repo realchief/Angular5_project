@@ -13,7 +13,7 @@ import { AuthGuard } from './@theme/components/auth/services';
 const routes: Routes = [
   {
     path: 'pages',
-    canActivate: [AuthGuard], // here we tell Angular to check the access with our AuthGuard
+    canActivate: [AuthGuard],
     loadChildren: 'app/pages/pages.module#PagesModule'
   },
   {

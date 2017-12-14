@@ -77,12 +77,13 @@ export class HeaderComponent implements OnInit {
           const redirect = result.getRedirect();
           if (redirect) {
             setTimeout(() => {
-              console.log('redirect', redirect);
               return this.router.navigate([redirect]);
             }, this.redirectDelay);
           }
         });
         return;
+      case 'Profile':
+         this.router.navigate(['/pages/profile']);
       default:
         // Do nothing
         console.log($event.title);
