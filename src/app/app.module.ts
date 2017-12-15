@@ -63,8 +63,8 @@ const authOptions = {
   providers: [
     { provide: APP_BASE_HREF, useValue: '/' },
     { provide: NB_AUTH_TOKEN_WRAPPER_TOKEN, useClass: AdxApiAuthToken },
+    { provide: HTTP_INTERCEPTORS, useClass: AdxApiInterceptor, multi: true },
     AuthGuard,
-    { provide: HTTP_INTERCEPTORS, useClass: AdxApiInterceptor, multi: true }
   ],
 })
 export class AppModule {

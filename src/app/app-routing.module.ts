@@ -13,6 +13,7 @@ import { AuthGuard } from './@theme/components/auth/services';
 const routes: Routes = [
   {
     path: 'pages',
+    runGuardsAndResolvers: 'always',
     canActivate: [AuthGuard],
     loadChildren: 'app/pages/pages.module#PagesModule'
   },

@@ -3,13 +3,15 @@
     <nb-card>
       <nb-card-header>All Campaigns / Create</nb-card-header>
       <nb-card-body>
-        <nb-tabset>
-          <nb-tab tabTitle="Campaign Form">
+        <nb-tabset (changeTab)="onChangeTab($event)">
+          <nb-tab tabTitle="1. Campaign Form">
             <adx-campaign-form></adx-campaign-form>
           </nb-tab>
-          <nb-tab tabTitle="Attach Site List">
+          <nb-tab tabTitle="2. Attach Site List">
+            <adx-attach-site-lists></adx-attach-site-lists>
           </nb-tab>
-          <nb-tab tabTitle="Ad Sets">
+          <nb-tab tabTitle="3. Ad Sets">
+            <adx-ad-sets></adx-ad-sets>
           </nb-tab>
         </nb-tabset>
       </nb-card-body>

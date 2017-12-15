@@ -7,11 +7,9 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './campaign.component.html',
 })
 export class CampaignComponent implements OnInit {
-  starRate = 2;
-  heartRate = 4;
-
   campaignId: number = 0;
-  
+  nextTab: number = 0;
+
   constructor(private route: ActivatedRoute) {}
 
   ngOnInit() {
@@ -23,5 +21,9 @@ export class CampaignComponent implements OnInit {
 
        // In a real app: dispatch action to load the details here.
     });
+  }
+
+  onChangeTab($event) {
+    console.log($event);
   }
 }
