@@ -60,8 +60,9 @@ export class CampaignsTableComponent {
       },
       active: {
         title: 'Status',
-        type: 'custom',
-        component: StatusRenderComponent,
+        // type: 'custom',
+        // component: StatusRenderComponent,
+        type: 'number',
       },
       checkList: {
         title: 'Checklist',

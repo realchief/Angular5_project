@@ -14,7 +14,7 @@ const routes: Routes = [
   {
     path: 'pages',
     runGuardsAndResolvers: 'always',
-    canActivate: [AuthGuard],
+    // canActivate: [AuthGuard],
     loadChildren: 'app/pages/pages.module#PagesModule'
   },
   {
@@ -47,8 +47,8 @@ const routes: Routes = [
       },
     ],
   },
-  { path: '', redirectTo: 'pages/campaigns/list', pathMatch: 'full' },
-  { path: '**', redirectTo: 'pages/campaigns/list' },
+  { path: '', redirectTo: 'pages/campaigns/create', pathMatch: 'full' },
+  { path: '**', redirectTo: 'pages/campaigns/create' },
 ];
 
 const config: ExtraOptions = {
