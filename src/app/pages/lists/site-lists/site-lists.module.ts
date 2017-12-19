@@ -8,8 +8,4 @@ import { StatusRenderComponent } from '../../../@theme/components/status-render-
   ],
   entryComponents: [StatusRenderComponent]
 })
-export class CampaignsTableModule { }
-
-export const campaignsTableSubComponents = [
-  StatusRenderComponent,
-]
+export class SiteListsModule { }

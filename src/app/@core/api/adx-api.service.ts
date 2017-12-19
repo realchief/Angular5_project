@@ -7,9 +7,13 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 
-import { Campaign } from '../models';
+import {
+  Campaign,
+  Report,
+} from '../models';
 import {
   GetCampaignsInterface,
+  GetReportsInterface,
 } from './adx-api.interfaces';
 
 const API_URL = environment.apiUrl;
@@ -23,7 +27,6 @@ export class AdxApiService {
   }
 
   public getCampaigns(limit: number, offset: number): Observable<Campaign[]> {
-    
     let params = new HttpParams()
       .set('limit', String(limit))
       .set('offset', String(offset));
@@ -64,7 +67,17 @@ export class AdxApiService {
       .catch(this.handleError);
   }
 
-  
+  public getReports(limit: number, offset: number): Observable(Report[]) {
+    let params = new HttpParams()
+      .set('limit', String(limit))
+      .set('offset', String(offset));
+
+    return this.http
+    .get<GetReportsInterface>(API_URL + '/reports', { params })
+    .map(result => result.data.map(report => new Report(report)))
+    .catch(this.handleError);
+  }
+
   private handleError (error: Response | any) {
     console.error('ApiService::handleError', error);
     return Observable.throw(error);

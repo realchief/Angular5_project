@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'adx-ads',
+  selector: 'adx-reports',
   template: `<router-outlet></router-outlet>`,
 })
-export class AdsComponent {
+export class ReportsComponent {
 }

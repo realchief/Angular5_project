@@ -2,20 +2,20 @@ import { Component } from '@angular/core';
 import { Router, Params } from '@angular/router';
 import { LocalDataSource } from 'ng2-smart-table';
 
-import { RtbEndpointDataService } from '../../@core/data/rtb-endpoint-data.service';
-import { Campaign } from '../../@core/models/campaign';
-import { StatusRenderComponent } from '../../@theme/components/status-render-component';
+import { ReportDataService } from '../../../@core/data/report-data.service';
+import { Report } from '../../../@core/models/report';
+import { StatusRenderComponent } from '../../../@theme/components/status-render-component';
 
 @Component({
-  selector: 'adx-campaings-table',
-  templateUrl: './campaigns-table.component.html',
+  selector: 'adx-reports-table',
+  templateUrl: './reports-table.component.html',
   styles: [`
     nb-card {
       transform: translate3d(0, 0, 0);
     }
   `],
 })
-export class CampaignsTableComponent {
+export class ReportsTableComponent {
 
   settings = {
     mode: 'external',
@@ -73,8 +73,8 @@ export class CampaignsTableComponent {
 
   source: LocalDataSource = new LocalDataSource();
 
-  constructor(private service: RtbEndpointDataService, private router: Router) {
-    // this.service.getCampaings(100, 0).subscribe(data => {
+  constructor(private service: ReportDataService, private router: Router) {
+    // this.service.getRt(100, 0).subscribe(data => {
     //   this.source.load(data);
     // })
   }

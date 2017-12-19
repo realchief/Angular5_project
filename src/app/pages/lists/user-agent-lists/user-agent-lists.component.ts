@@ -2,20 +2,20 @@ import { Component } from '@angular/core';
 import { Router, Params } from '@angular/router';
 import { LocalDataSource } from 'ng2-smart-table';
 
-import { ReportDataService } from '../../../@core/data/report-data.service';
+import { IpListDataService } from '../../../@core/data/ip-list-data.service';
 import { Campaign } from '../../../@core/models/campaign';
 import { StatusRenderComponent } from '../../../@theme/components/status-render-component';
 
 @Component({
-  selector: 'adx-campaings-table',
-  templateUrl: './campaigns-table.component.html',
+  selector: 'adx-ip-lists',
+  templateUrl: './ip-lists.component.html',
   styles: [`
     nb-card {
       transform: translate3d(0, 0, 0);
     }
   `],
 })
-export class CampaignsTableComponent {
+export class UserAgentListsComponent {
 
   settings = {
     mode: 'external',
@@ -73,7 +73,7 @@ export class CampaignsTableComponent {
 
   source: LocalDataSource = new LocalDataSource();
 
-  constructor(private service: CampaignDataService, private router: Router) {
+  constructor(private service: IpListDataService, private router: Router) {
     this.service.getCampaings(100, 0).subscribe(data => {
       this.source.load(data);
     })

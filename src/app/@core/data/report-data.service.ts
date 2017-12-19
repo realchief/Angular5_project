@@ -9,7 +9,7 @@ import {
 } from '../api/adx-api.interfaces';
 
 @Injectable()
-export class CampaignDataService {
+export class ReportDataService {
   data = [{
     id: 1,
   }];
@@ -22,11 +22,6 @@ export class CampaignDataService {
   // GET /reports
   getReports(limit: number, offset: number): Observable<Report[]> {
     return this.api.getReports(limit, offset);
-  }
-
-  // GET /reports/dimensions
-  getReportsDimensions(): Observable<ReportDimension> {
-    return this.api.getReportById(reportId);
   }
 
   // GET /reports/columns
