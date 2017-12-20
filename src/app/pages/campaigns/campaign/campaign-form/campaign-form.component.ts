@@ -6,8 +6,5 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './campaign-form.component.html',
 })
 export class CampaignFormComponent {
-  starRate = 2;
-  heartRate = 4;
-
   campaign = {};
 }

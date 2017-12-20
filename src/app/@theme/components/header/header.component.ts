@@ -91,9 +91,13 @@ export class HeaderComponent implements OnInit {
           }
         });
         return;
-      case 'Profile':
-         this.router.navigate(['/pages/profile']);
-      default:
+    case 'Profile':
+      this.router.navigate(['/pages/profile']);
+      return;
+    case 'AdminSetup':
+      this.router.navigate(['/pages/admin/advertisers']);
+      return
+    default:
         // Do nothing
         console.log($event.title);
     }
