@@ -12,5 +12,6 @@ export const environment = {
   production: false,
 
   // URL of development API
-  apiUrl: 'https://api.adx1.com/v1.0.1'
+  apiV1Url: 'https://api.adx1.com/v1.0.1',
+  apiUrl: 'https://api.adx1.com/module/Cpmplatform/UsersModule'
 };

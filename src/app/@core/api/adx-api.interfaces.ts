@@ -1,11 +1,15 @@
 import {
   Campaign,
   Report,
-} from '../models';
-import {
   Advertiser,
   User,
-} from '../models/admin';
+  Organization,
+  Organiztion2,
+} from '../models';
+
+export interface OrganizationDataInterdace2 {
+  data: Organiztion2[];
+}
 
 export interface GetCampaignsInterface {
   count: number,
@@ -22,7 +26,19 @@ export interface GetAdvertisersInterface {
   data: Advertiser[];
 }
 
+export interface GetOrganizationInterface2 {
+  response: OrganizationDataInterdace2;
+  messasge: string,
+  success: boolean,
+  totalCount: number,
+}
+
 export interface GetUsersInterface {
   count: number,
   data: User[];
+}
+
+export interface GetOrganizationsInterface {
+  count: number,
+  data: Organization[];
 }

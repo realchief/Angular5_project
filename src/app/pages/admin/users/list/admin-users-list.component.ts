@@ -3,7 +3,7 @@ import { Router, Params } from '@angular/router';
 import { LocalDataSource } from 'ng2-smart-table';
 
 import { AdminDataService } from '../../../../@core/data/admin-data.service';
-import { User } from '../../../../@core/models/admin';
+import { User } from '../../../../@core/models';
 import { StatusRenderComponent } from '../../../../@theme/components/status-render-component';
 
 @Component({
@@ -64,9 +64,9 @@ export class AdminUsersListComponent {
   source: LocalDataSource = new LocalDataSource();
 
   constructor(private service: AdminDataService, private router: Router) {
-    this.service.getUsers(100, 0).subscribe(data => {
-      this.source.load(data);
-    })
+    // this.service.getUsers(100, 0).subscribe(data => {
+    //   this.source.load(data);
+    // })
   }
 
   onEdit($event): void {

@@ -3,7 +3,7 @@ import { Router, Params } from '@angular/router';
 import { LocalDataSource } from 'ng2-smart-table';
 
 import { AdminDataService } from '../../../@core/data/admin-data.service';
-import { Advertiser } from '../../../@core/models/admin';
+import { Advertiser } from '../../../@core/models';
 import { StatusRenderComponent } from '../../../@theme/components/status-render-component';
 
 @Component({
@@ -18,6 +18,10 @@ import { StatusRenderComponent } from '../../../@theme/components/status-render-
 export class AdminAdvertisersComponent {
 
   settings = {
+    actions: {
+      add: false,
+      delete: false,
+    },
     mode: 'external',
     edit: {
       editButtonContent: '<i class="nb-edit"></i>',
@@ -59,9 +63,10 @@ export class AdminAdvertisersComponent {
   source: LocalDataSource = new LocalDataSource();
 
   constructor(private service: AdminDataService, private router: Router) {
-    this.service.getAdvertisers(100, 0).subscribe(data => {
+    this.service.getOrganizations(100, 0).subscribe(data => {
       this.source.load(data);
     })
+    // this.source.load(this.service.getOrganizationData())
   }
 
   onEdit($event): void {

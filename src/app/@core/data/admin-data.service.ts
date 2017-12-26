@@ -1,58 +1,73 @@
 import { Injectable } from '@angular/core';
-import { Advertiser, User } from '../models/admin';
+import { Advertiser, User } from '../models';
 import { AdxApiService } from '../api/adx-api.service';
+import { AdxApi2Service } from '../api/adx-api2.service';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/delay';
 
 import {
   GetCampaignsInterface,
 } from '../api/adx-api.interfaces';
+import {
+  Organization,
+  Organiztion2
+} from '../models/index';
 
 @Injectable()
 export class AdminDataService {
-  data = [{
+  organizationData = [{
     id: 1,
     name: 'Campaign 1',
+    status: 'Active',
+    currentBallance: 0,
   }];
 
   constructor(
-    private api: AdxApiService
+    private api: AdxApiService,
+    private api2: AdxApi2Service,
   ) {
   }
 
   /***** Advertiser *****/
-  // PUT /admin/advertisers/:id
-  updateAdvertiser(advertiser: Advertiser): Observable<Advertiser> {
-    return this.api.updateAdvertiser(advertiser);
-  }
+  // updateAdvertiser(advertiser: Advertiser): Observable<Advertiser> {
+  //   return this.api2.updateAdvertiser(advertiser);
+  // }
 
-  // GET /advertisers
-  getAdvertisers(limit: number, offset: number): Observable<Advertiser[]> {
-    return this.api.getAdvertisers(limit, offset);
-  }
+  // getAdvertisers(limit: number, offset: number): Observable<Advertiser[]> {
+  //   return this.api2.getAdvertisers(limit, offset);
+  // }
 
-  // GET /advertisers/:id
-  getAdvertiserById(advertiserId: number): Observable<Advertiser> {
-    return this.api.getAdvertiserById(advertiserId);
-  }
+  // getAdvertiserById(advertiserId: number): Observable<Advertiser> {
+  //   return this.api2.getAdvertiserById(advertiserId);
+  // }
 
   /***** User *****/
-  // PUT /admin/users/:id
-  updateUser(user: User): Observable<User> {
-    return this.api.updateUser(user);
+  // updateUser(user: User): Observable<User> {
+  //   return this.api.updateUser(user);
+  // }
+
+  // getUsers(limit: number, offset: number): Observable<User[]> {
+  //   return this.api.getUsers(limit, offset);
+  // }
+
+  // getUserById(userId: number): Observable<Advertiser> {
+  //   return this.api.getAdvertiserById(userId);
+  // }
+
+  /***** Organization *****/
+  updateOrganization(organization: Organization): Observable<Organization> {
+    return this.api2.updateOrganization(organization);
   }
 
-  // GET /users
-  getUsers(limit: number, offset: number): Observable<User[]> {
-    return this.api.getUsers(limit, offset);
+  getOrganizations(limit: number, offset: number): Observable<Organization[]> {
+    return this.api2.getOrganizations(limit, offset);
   }
 
-  // GET /users/:id
-  getUserById(userId: number): Observable<Advertiser> {
-    return this.api.getAdvertiserById(userId);
+  getOrganizationById(id: number): Observable<Organization> {
+    return this.api2.getOrganizationById(id);
   }
 
-  getData() {
-    return this.data;
+  getOrganizationData() {
+    return this.organizationData;
   }
 }
