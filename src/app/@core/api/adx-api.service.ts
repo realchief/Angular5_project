@@ -14,10 +14,13 @@ import {
   Constants,
   Organization,
   Payment,
+  Profile,
   Report,
   RtbEndpoint2,
+  User,
 } from '../models';
 import {
+  GetAgenciesInterface,
   GetBillingInterface,
   GetCampaignsInterface,
   GetConstantsInterface,
@@ -27,7 +30,8 @@ import {
   GetReportsInterface,
   GetRtbNewInterface,
   GetRtbEndpointsInterface2,
-  GetUsersInterface,
+  GetCurrentUserInterface2,
+  GetSettingsProfileInterface,
 } from './adx-api.interfaces';
 
 const API_V1_URL = environment.apiV1Url;
@@ -45,9 +49,9 @@ export class AdxApiService {
 
   public getConstants(): Observable<Constants> {
     return this.http
-    .get<GetConstantsInterface>(API_V102_URL + '/constants')
-    .map(result => new Constants(result.data))
-    .catch(this.handleError);
+      .get<GetConstantsInterface>(API_V102_URL + '/constants')
+      .map(result => new Constants(result.data))
+      .catch(this.handleError);
   }
 
   // Billing History
@@ -147,7 +151,7 @@ export class AdxApiService {
       .set('offset', String(offset));
 
     return this.http
-      .get<GetUsersInterface>(API_V1_URL + '/agencies' + organizationId, { params })
+      .get<GetAgenciesInterface>(API_V1_URL + '/agencies' + organizationId, { params })
       .map(result => result.data.map(agency => new Agency(agency)))
       .catch(this.handleError);
   }
@@ -205,6 +209,22 @@ export class AdxApiService {
       .map(result => result.response.data.map(item => new Payment(item)))
       .catch(this.handleError);
   }
+
+  // Users
+  public getCurrentUser(): Observable<User> {
+    return this.http
+      .get<GetCurrentUserInterface2>(API_URL + '/Users/current/')
+      .map(result => new User(result.response.data))
+      .catch(this.handleError);
+  }
+
+  // Settings
+  public getSettingsProfile(): Observable<Profile> {
+    return this.http
+      .get<GetSettingsProfileInterface>(API_URL + '/Settings/profile/')
+      .map(result => new Profile(result.response.data))
+      .catch(this.handleError);
+}
 
   private handleError (error: Response | any) {
     console.error('ApiService::handleError', error);

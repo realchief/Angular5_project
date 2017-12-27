@@ -3,7 +3,7 @@ import { Router, Params } from '@angular/router';
 import { LocalDataSource } from 'ng2-smart-table';
 
 import { CampaignDataService } from '../../../@core/data/campaign-data.service';
-import { Campaign } from '../../../@core/models/campaign';
+import { Campaign } from '../../../@core/models';
 import { StatusRenderComponent } from '../../../@theme/components/status-render-component';
 
 @Component({

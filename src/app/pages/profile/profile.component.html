@@ -7,13 +7,15 @@
           <div class="form-group row">
             <label for="inputUserName" class="col-sm-3 col-form-label">User Name</label>
             <div class="col-sm-9">
-              <input type="text" class="form-control" id="inputUserName" placeholder="User Name">
+              <input name="name" [(ngModel)]="user.name" type="text" class="form-control"
+                     id="inputUserName" placeholder="User Name" name="name" #name="ngModel">
             </div>
           </div>
           <div class="form-group row">
             <label for="inputEmail1" class="col-sm-3 col-form-label">Email</label>
             <div class="col-sm-9">
-              <input type="email" class="form-control" id="inputEmail1" placeholder="Email">
+              <input type="email" [(ngModel)]="user.email" type="text" class="form-control"
+                     id="inputEmail" placeholder="Email" name="email" #email="ngModel">
             </div>
           </div>
           <div class="form-group row">

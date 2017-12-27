@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Campaign } from '../models/campaign';
+import { Campaign } from '../models';
 import { AdxApiService } from '../api/adx-api.service';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/delay';
