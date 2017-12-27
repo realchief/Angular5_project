@@ -4,10 +4,10 @@ import 'rxjs/add/observable/of';
 import 'rxjs/add/observable/forkJoin';
 
 import { AdxApiService } from '../api/adx-api.service';
-import BaseService from './base.service';
+// import BaseService from './base.service';
 import { User, ProfileData } from '../models';
 
-let counter = 0;
+// let counter = 0;
 
 @Injectable()
 export class UserService {
@@ -20,7 +20,7 @@ export class UserService {
     kate: { name: 'Kate Martinez', picture: 'assets/images/kate.png' },
   };
 
-  private userArray: any[];
+  // private userArray: any[];
 
   constructor(protected api: AdxApiService) {
   }
@@ -33,7 +33,7 @@ export class UserService {
         return prev;
       }, {});
       return obj;
-    }, {})
+    }, {});
   }
 
   getUsers(): Observable<any> {
@@ -44,15 +44,15 @@ export class UserService {
     const currentUserOb = this.api.getCurrentUser();
     const constantsOb = this.api.getConstants();
     const settingsProfileOb = this.api.getSettingsProfile();
-    
+
     return Observable.forkJoin([currentUserOb, constantsOb, settingsProfileOb])
       .map((data: any[]) => {
         const currentUser = data[0];
-        const constants = this.convertArrayToObjectList(data[1]);
+        // const constants = this.convertArrayToObjectList(data[1]);
         const settingsProfile = data[2];
 
         const profileData = new ProfileData(currentUser);
-        profileData.notifications.shortrage_report = settingsProfile.Notification.shortage
+        profileData.notifications.shortrage_report = settingsProfile.Notification.shortage;
         return profileData;
       });
   }

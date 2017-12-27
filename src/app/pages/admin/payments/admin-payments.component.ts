@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { Router, Params } from '@angular/router';
+// import { Router } from '@angular/router';
 import { LocalDataSource } from 'ng2-smart-table';
 
 import { AdminDataService } from '../../../@core/data/admin-data.service';
-import { Payment } from '../../../@core/models';
+// import { Payment } from '../../../@core/models';
 
 @Component({
   selector: 'adx-admin-payments',
@@ -61,7 +61,7 @@ export class AdminPaymentsComponent {
 
   source: LocalDataSource = new LocalDataSource();
 
-  constructor(private service: AdminDataService, private router: Router) {
+  constructor(private service: AdminDataService) {
     this.service.getPaymentNew().subscribe(utype => {
       this.service.getPayments(100, 0).subscribe(data => {
         this.source.load(data.map(item => {
@@ -69,9 +69,8 @@ export class AdminPaymentsComponent {
           item.credit = 0;
           item.amount = 0;
           return item;
-        }))
-      })
-    })
-    // this.source.load(this.service.getOrganizationData())
+        }));
+      });
+    });
   }
 }

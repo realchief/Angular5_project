@@ -2,15 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { AdminDataService } from '../../../../@core/data/admin-data.service';
-import { Advertiser } from '../../../../@core/models';
+// import { Advertiser } from '../../../../@core/models';
 
 @Component({
   selector: 'adx-admin-advertiser-form',
   styleUrls: ['./admin-advertiser-form.component.scss'],
   templateUrl: './admin-advertiser-form.component.html',
 })
-export class AdminAdvertiserFormComponent {
-  user = {}
+export class AdminAdvertiserFormComponent implements OnInit {
+  user = {};
+  position = 'left';
 
   constructor(private service: AdminDataService, private route: ActivatedRoute, private router: Router) {}
 
@@ -20,7 +21,7 @@ export class AdminAdvertiserFormComponent {
         const id = params['id'];
         this.service.getUserById2(id).subscribe(user => {
           this.user = user;
-        })
+        });
       }
     });
   }

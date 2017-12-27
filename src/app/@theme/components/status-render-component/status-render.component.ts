@@ -8,15 +8,14 @@ import { ViewCell } from 'ng2-smart-table';
   <nb-checkbox></nb-checkbox>
   `,
 })
-export class StatusRenderComponent implements ViewCell {
+export class StatusRenderComponent implements ViewCell, OnInit {
 
   renderValue: string;
-  
+
   @Input() value: string | number;
   @Input() rowData: any;
-  
+
   ngOnInit() {
-    console.log(this.value);
     this.renderValue = this.value.toString().toUpperCase();
   }
 }

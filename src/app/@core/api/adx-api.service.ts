@@ -19,7 +19,6 @@ import {
   RtbEndpoint2,
   User,
   User2,
-  Permission,
   Permission2,
 } from '../models';
 import {
@@ -67,7 +66,7 @@ export class AdxApiService {
       .map(result => result.response.data.map(item => new BillingHistory(item)))
       .catch(this.handleError);
   }
-  
+
   // Campaigns
   public getCampaigns(limit: number, offset: number): Observable<Campaign[]> {
     const params = new HttpParams()
@@ -224,11 +223,11 @@ export class AdxApiService {
     .set('sort', String(sort));
 
     return this.http
-      .get<GetPermissionsInterface>(API_MODULE_URL + '/UsersModule/permissions/')
+      .get<GetPermissionsInterface>(API_MODULE_URL + '/UsersModule/permissions/', { params })
       .map(result => result.response.data.map(item => new Permission2(item)))
       .catch(this.handleError);
   }
-  
+
   // Users
   public getCurrentUser(): Observable<User> {
     return this.http
@@ -238,12 +237,12 @@ export class AdxApiService {
   }
 
   public updateProfile(profileData): Observable<any> {
-      let headers = new HttpHeaders({'Content-Type': 'application/x-www-form-urlencoded'});
-      let body = new URLSearchParams();
+      const headers = new HttpHeaders({'Content-Type': 'application/x-www-form-urlencoded'});
+      const body = new URLSearchParams();
       Object.keys(profileData).map(key => {
         body.append(key, profileData[key]);
-      })
-   
+      });
+
       return this.http
         .put<UpdateProfileInterface>(API_URL + '/Users/saveProfile/', body, { headers })
         .map(result => result.response.data)
@@ -252,7 +251,7 @@ export class AdxApiService {
 
   public getUserById2(id: number): Observable<User2> {
     const params = new HttpParams()
-      .set('user_id', String(id))
+      .set('user_id', String(id));
 
     return this.http
       .get<GetUserInterface2>(API_MODULE_URL + '/UsersModule/user/', { params })

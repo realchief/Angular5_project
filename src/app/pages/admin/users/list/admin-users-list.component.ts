@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { Router, Params } from '@angular/router';
+import { Router } from '@angular/router';
 import { LocalDataSource } from 'ng2-smart-table';
 
 import { AdminDataService } from '../../../../@core/data/admin-data.service';
-import { User } from '../../../../@core/models';
-import { StatusRenderComponent } from '../../../../@theme/components/status-render-component';
+// import { User } from '../../../../@core/models';
+// import { StatusRenderComponent } from '../../../../@theme/components/status-render-component';
 
 @Component({
   selector: 'adx-admin-users-list',
@@ -66,13 +66,17 @@ export class AdminUsersListComponent {
   constructor(private service: AdminDataService, private router: Router) {
     this.service.getPermissions(100, 0, 'id DESC').subscribe(data => {
       this.source.load(data);
-    })
+    });
+  }
+
+  onCreate($event): void {
+
   }
 
   onEdit($event): void {
-    this.router.navigate(['/pages/admin/users/edit', { id: $event.data.id }])
+    this.router.navigate(['/pages/admin/users/edit', { id: $event.data.id }]);
   }
-            
+
   onDeleteConfirm(event): void {
     if (window.confirm('Are you sure you want to delete?')) {
       event.confirm.resolve();

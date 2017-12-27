@@ -33,17 +33,17 @@ const authOptions = {
           endpoint: '/auth',
           method: 'post',
         },
-        logout :{
+        logout: {
           endpoint: '/auth',
           method: 'delete',
           redirect: {
             success: '/auth/login',
             failure: null,
           },
-        }
-      }
-    }
-  }
+        },
+      },
+    },
+  },
 };
 
 @NgModule({
@@ -60,7 +60,7 @@ const authOptions = {
     NgbModule.forRoot(),
     ThemeModule.forRoot(),
     CoreModule.forRoot(),
-    NbAuthModule.forRoot(authOptions)
+    NbAuthModule.forRoot(authOptions),
   ],
   bootstrap: [AppComponent],
   providers: [

@@ -5,14 +5,14 @@
  */
 import { Injectable, Optional, Inject, Injector } from '@angular/core';
 
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+// import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
 
 import { NbAbstractAuthProvider } from '../providers/abstract-auth.provider';
-import { NbAuthSimpleToken, AdxApiAuthToken, NbTokenService } from './token.service';
+import { NbAuthSimpleToken, NbTokenService } from './token.service';
 import { NB_AUTH_PROVIDERS_TOKEN } from '../auth.options';
 
 export class NbAuthResult {
@@ -39,8 +39,6 @@ export class NbAuthResult {
       this.messages = messages;
     }
 
-    console.log(token)
-
     this.token = token;
   }
 
@@ -53,7 +51,7 @@ export class NbAuthResult {
   }
 
   replaceToken(token: NbAuthSimpleToken): any {
-    this.token = token
+    this.token = token;
   }
 
   getRedirect(): any {

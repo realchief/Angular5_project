@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
 
 import { BillingDataService } from '../../@core/data/billing-data.service';
-import { BillingHistory } from '../../@core/models';
+// import { BillingHistory } from '../../@core/models';
 
 @Component({
   selector: 'adx-billing-history',
@@ -60,8 +60,7 @@ export class BillingHistoryComponent {
 
   constructor(private service: BillingDataService) {
     this.service.getBillingHistory().subscribe(data => {
-      console.log(data)
       // this.source.load(data);
-    })
+    });
   }
 }

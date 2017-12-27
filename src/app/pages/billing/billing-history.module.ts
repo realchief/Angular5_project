@@ -7,7 +7,7 @@ import { BillingDataService } from '../../@core/data/billing-data.service';
 @NgModule({
   imports: [
     ThemeModule,
-    Ng2SmartTableModule
+    Ng2SmartTableModule,
   ],
   declarations: [
     BillingHistoryComponent,

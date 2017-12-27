@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { Router, Params } from '@angular/router';
+import { Router } from '@angular/router';
 import { LocalDataSource } from 'ng2-smart-table';
 
 import { RtbDataService } from '../../../../@core/data/rtb-data.service';
-import { RtbEndpoint2 } from '../../../../@core/models';
+// import { RtbEndpoint2 } from '../../../../@core/models';
 // import { StatusRenderComponent } from '../../../../@theme/components/status-render-component';
 
 @Component({
@@ -73,7 +73,7 @@ export class RtbSSPTableComponent {
   constructor(private service: RtbDataService, private router: Router) {
     this.service.getEndpoints2(100, 0).subscribe(data => {
       this.source.load(data);
-    })
+    });
   }
 
   onCreate($event): void {

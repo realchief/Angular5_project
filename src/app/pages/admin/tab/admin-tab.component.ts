@@ -22,9 +22,7 @@ export class AdminTabComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      if (params['tab']) {
-        const id = params['tab'];
-      }
+      if (params['tab']) {}
     });
   }
 

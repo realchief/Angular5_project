@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/forkJoin';
 import 'rxjs/add/operator/delay';
 import {
-  Constants,
+  // Constants,
   RtbEndpoint2,
 } from '../models';
 
@@ -27,7 +27,7 @@ export class RtbDataService {
         return prev;
       }, {});
       return obj;
-    }, {})
+    }, {});
   }
 
   // GET SSP endpoint
@@ -39,7 +39,7 @@ export class RtbDataService {
     return Observable.forkJoin([rtbNewOb, constantsOb, rtbEndpointsOb])
       .map((data: any[]) => {
         const rtbNew = this.convertArrayToObjectList(data[0]);
-        const constants = this.convertArrayToObjectList(data[1]);
+        // const constants = this.convertArrayToObjectList(data[1]);
         const rtbEndpoints: any[] = data[2];
 
         // console.log(rtbNew);
@@ -50,11 +50,11 @@ export class RtbDataService {
           ep.supplyType = rtbNew.supply_type[ep.supply_type].name;
           // ep.phase = rtbNew.test_mode_new[ep.test_mode].name;
           return ep;
-        })
+        });
       });
   }
 
-  getRtbNew() : Observable<Object> {
+  getRtbNew(): Observable<Object> {
     return this.api.getRtbNew();
   }
 

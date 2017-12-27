@@ -146,7 +146,7 @@ export interface GetUserInterface2 {
 export interface GetSettingsProfileInterface {
   response: {
     data: Profile;
-  }
+  };
   messasge: string;
   success: boolean;
   totalCount: number;

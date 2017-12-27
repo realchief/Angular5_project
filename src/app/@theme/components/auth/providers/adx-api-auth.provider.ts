@@ -5,7 +5,7 @@
  */
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders, HttpResponse, HttpErrorResponse } from '@angular/common/http';
-import { ActivatedRoute } from '@angular/router';
+// import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
@@ -153,12 +153,12 @@ export class AdxApiAuthProvider extends NbAbstractAuthProvider {
     },
   };
 
-  constructor(protected http: HttpClient, private route: ActivatedRoute) {
+  constructor(protected http: HttpClient) {
     super();
   }
 
   authenticate(data?: any): Observable<NbAuthResult> {
-    const method = this.getConfigValue('login.method');
+    // const method = this.getConfigValue('login.method');
     const url = this.getActionEndpoint('login');
 
     const body = new HttpParams()
@@ -232,8 +232,7 @@ export class AdxApiAuthProvider extends NbAbstractAuthProvider {
 
   logout(): Observable<NbAuthResult> {
 
-    const method = this.getConfigValue('logout.method');
-    const url = this.getActionEndpoint('logout');
+    // const method = this.getConfigValue('logout.method');
 
     return Observable.of({})
       .switchMap((res: any) => {

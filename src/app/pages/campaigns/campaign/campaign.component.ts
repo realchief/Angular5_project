@@ -14,7 +14,6 @@ export class CampaignComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      console.log(params)
       if (params['id']) {
         this.campaignId = params['id'];
       }

@@ -5,9 +5,7 @@ import { ThemeModule } from '../../@theme/theme.module';
 import { AdminRoutingModule, routedComponents } from './admin-routing.module';
 import { AdminTabModule } from './tab/admin-tab.module';
 import { AdminAdvertisersModule } from './advertisers/admin-advertisers.module';
-import { AdminAdvertisersRoutingModule } from './advertisers/admin-advertisers-routing.module';
 import { AdminUsersModule } from './users/admin-users.module';
-import { AdminUsersRoutingModule } from './users/admin-users-routing.module';
 import { AdminDataService } from '../../@core/data/admin-data.service';
 
 @NgModule({
@@ -25,6 +23,6 @@ import { AdminDataService } from '../../@core/data/admin-data.service';
   providers: [
     AdminDataService,
   ],
-  entryComponents: []
+  entryComponents: [],
 })
 export class AdminModule { }

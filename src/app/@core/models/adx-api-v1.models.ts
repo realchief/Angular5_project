@@ -103,7 +103,7 @@ export class Display {
   approvals: Approval[] = [{
     vendor: '',
     approved: true,
-    note: ''
+    note: '',
   }];
 
   constructor(values: Object = {}) {

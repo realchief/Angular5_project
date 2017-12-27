@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { Router, Params } from '@angular/router';
+import { Router } from '@angular/router';
 import { LocalDataSource } from 'ng2-smart-table';
 
 import { CampaignDataService } from '../../../@core/data/campaign-data.service';
-import { Campaign } from '../../../@core/models';
-import { StatusRenderComponent } from '../../../@theme/components/status-render-component';
+// import { Campaign } from '../../../@core/models';
+// import { StatusRenderComponent } from '../../../@theme/components/status-render-component';
 
 @Component({
   selector: 'adx-campaings-table',
@@ -76,17 +76,17 @@ export class CampaignsTableComponent {
   constructor(private service: CampaignDataService, private router: Router) {
     this.service.getCampaings(100, 0).subscribe(data => {
       this.source.load(data);
-    })
+    });
   }
 
   onCreate($event): void {
-    this.router.navigate(['/pages/campaigns/create'])
+    this.router.navigate(['/pages/campaigns/create']);
   }
 
   onEdit($event): void {
-    this.router.navigate(['/pages/campaigns/edit', { id: $event.data.id }])
+    this.router.navigate(['/pages/campaigns/edit', { id: $event.data.id }]);
   }
-            
+
   onDeleteConfirm(event): void {
     if (window.confirm('Are you sure you want to delete?')) {
       event.confirm.resolve();

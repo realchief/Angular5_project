@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { Router, Params } from '@angular/router';
+import { Router } from '@angular/router';
 import { LocalDataSource } from 'ng2-smart-table';
 
 import { AdminDataService } from '../../../../@core/data/admin-data.service';
-import { Advertiser } from '../../../../@core/models';
-import { StatusRenderComponent } from '../../../../@theme/components/status-render-component';
+// import { Advertiser } from '../../../../@core/models';
+// import { StatusRenderComponent } from '../../../../@theme/components/status-render-component';
 
 @Component({
   selector: 'adx-admin-advertisers-list',
@@ -65,10 +65,13 @@ export class AdminAdvertisersListComponent {
   constructor(private service: AdminDataService, private router: Router) {
     this.service.getOrganizations(100, 0).subscribe(data => {
       this.source.load(data);
-    })
+    });
   }
 
   onEdit($event): void {
-    this.router.navigate([`/pages/admin/advertisers/${$event.data.id}/edit`])
+    this.router.navigate([`/pages/admin/advertisers/${$event.data.id}/edit`]);
+  }
+
+  onDeleteConfirm($event): void {
   }
 }

@@ -17,6 +17,6 @@ import { CampaignDataService } from '../../@core/data/campaign-data.service';
   providers: [
     CampaignDataService,
   ],
-  entryComponents: []
+  entryComponents: [],
 })
 export class ReportsModule { }

@@ -5,7 +5,7 @@ export class ProfileData extends User {
     shortrage_report: string;
   } = {
     shortrage_report: '',
-  }
+  };
 
   constructor(values: Object = {}) {
     super({});

@@ -12,6 +12,6 @@ import { ThemeModule } from '../../@theme/theme.module';
   ],
   providers: [
   ],
-  entryComponents: []
+  entryComponents: [],
 })
 export class ListsModule { }

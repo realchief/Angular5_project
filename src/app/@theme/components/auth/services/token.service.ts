@@ -73,25 +73,6 @@ export class NbAuthJWTToken extends NbAuthSimpleToken {
   }
 }
 
-/**
- * Wrapper for Adx API token with additional methods.
- * {
- *    "access_token": "",
- *    "expires_in": 432000,
- *    "token_type": "Bearer",
- *    "scope":null,
- *    "refresh_token":""
- * }
- * 
- * {
- *    "success": true,
- *    "message": "Authorisation Error",
- *    "data": { 
- *      "error":"Invalid password.",
- *      "totalCount":1
- *    }
- * }
- */
 @Injectable()
 export class AdxApiAuthToken extends NbAuthSimpleToken {
 
@@ -131,7 +112,7 @@ export class AdxApiAuthToken extends NbAuthSimpleToken {
 
     return decoded.token_type;
   }
-  
+
   /**
    * Returns access token
    * @returns String
@@ -144,7 +125,7 @@ export class AdxApiAuthToken extends NbAuthSimpleToken {
 
     return decoded.access_token;
   }
-  
+
   /**
    * Returns refresh token
    * @returns String
@@ -157,7 +138,7 @@ export class AdxApiAuthToken extends NbAuthSimpleToken {
 
     return decoded.refresh_token;
   }
-  
+
   /**
    * Returns expiration date
    * @returns Date

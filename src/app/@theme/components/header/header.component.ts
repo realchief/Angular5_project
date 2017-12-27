@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { NbMenuService, NbSidebarService } from '@nebular/theme';
-import { UserService } from '../../../@core/data/users.service';
+// import { UserService } from '../../../@core/data/users.service';
 import { AnalyticsService } from '../../../@core/utils/analytics.service';
 
 import { NbAuthJWTToken, NbAuthService, NbAuthResult } from '../auth';
@@ -36,16 +36,16 @@ export class HeaderComponent implements OnInit {
 
   constructor(private sidebarService: NbSidebarService,
               private menuService: NbMenuService,
-              private userService: UserService,
+              // private userService: UserService,
               private analyticsService: AnalyticsService,
               private authService: NbAuthService,
               protected router: Router) {
     this.authService.onTokenChange()
       .subscribe((token: NbAuthJWTToken) => {
         if (token && token.getValue()) {
-          this.user = token.getPayload()
+          this.user = token.getPayload();
         }
-      })
+      });
   }
 
   ngOnInit() {
@@ -76,13 +76,12 @@ export class HeaderComponent implements OnInit {
       case 'Log out':
         this.authService.logout('email').subscribe((result: NbAuthResult) => {
           this.submitted = false;
-          console.log(result)
           if (result.isSuccess()) {
             this.messages = result.getMessages();
           } else {
             this.errors = result.getErrors();
           }
-    
+
           const redirect = result.getRedirect();
           if (redirect) {
             setTimeout(() => {
@@ -96,22 +95,22 @@ export class HeaderComponent implements OnInit {
       return;
     case 'Admin Setup':
       this.router.navigate(['/pages/admin/tabs']);
-      return
+      return;
     case 'Billing History':
       this.router.navigate(['/pages/billing']);
-      return
+      return;
     case 'Payments':
       this.router.navigate(['/pages/admin/payments']);
-      return
+      return;
     case 'RTB Endpoints':
       this.router.navigate(['/pages/rtb/tab']);
-      return
+      return;
     case 'Knowledge Base':
       this.router.navigate(['/pages/knowledgebase']);
-      return
+      return;
     case 'Support':
       this.router.navigate(['/pages/support']);
-      return
+      return;
     default:
         // Do nothing
         console.log($event.title);

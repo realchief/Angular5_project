@@ -3,9 +3,9 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { RtbComponent } from './rtb.component';
 import { RtbTabComponent } from './tab/rtb-tab.component';
-import { RtbSSPComponent } from './ssp/rtb-ssp.component';
+// import { RtbSSPComponent } from './ssp/rtb-ssp.component';
 import { RtbSSPTableComponent } from './ssp/rtb-ssp-table/rtb-ssp-table.component';
-import { RtbSSPFormComponent } from './ssp/rtb-ssp-form/rtb-ssp-form.component';
+// import { RtbSSPFormComponent } from './ssp/rtb-ssp-form/rtb-ssp-form.component';
 
 const routes: Routes = [{
   path: '',

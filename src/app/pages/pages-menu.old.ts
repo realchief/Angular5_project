@@ -15,7 +15,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
         title: 'New Campaign',
         link: '/pages/campaigns/create',
       },
-    ],    
+    ],
   },
   // {
   //   title: 'Reports',
@@ -27,7 +27,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
   //   title: 'FEATURES',
   //   group: true,
   // },
-  { 
+  {
     title: 'REPORTS',
     icon: 'nb-keypad',
     link: '/pages/ui-features',

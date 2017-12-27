@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+// import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'adx-rtb-tab',
@@ -9,7 +9,8 @@ import { ActivatedRoute } from '@angular/router';
 export class RtbTabComponent implements OnInit {
   nextTab: number = 0;
 
-  constructor(private route: ActivatedRoute) {}
+  // constructor(private route: ActivatedRoute) {}
+  constructor() {}
 
   ngOnInit() {
   }

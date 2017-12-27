@@ -6,6 +6,6 @@ import { StatusRenderComponent } from '../../../@theme/components/status-render-
   declarations: [
     StatusRenderComponent,
   ],
-  entryComponents: [StatusRenderComponent]
+  entryComponents: [StatusRenderComponent],
 })
 export class SiteListsModule { }

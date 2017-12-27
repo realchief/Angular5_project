@@ -21,6 +21,6 @@ import { RtbDataService } from '../../@core/data/rtb-data.service';
   providers: [
     RtbDataService,
   ],
-  entryComponents: []
+  entryComponents: [],
 })
 export class RtbModule {}

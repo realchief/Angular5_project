@@ -18,16 +18,16 @@ const routes: Routes = [{
   }, {
     path: 'profile',
     component: ProfileComponent,
-  },{
+  }, {
     path: 'admin',
     loadChildren: './admin/admin.module#AdminModule',
-  },{
+  }, {
     path: 'billing',
     component: BillingHistoryComponent,
-  },{
+  }, {
     path: 'rtb',
     loadChildren: './rtb/rtb.module#RtbModule',
-  },{
+  }, {
     path: 'ui-features',
     loadChildren: './ui-features/ui-features.module#UiFeaturesModule',
   }, {
