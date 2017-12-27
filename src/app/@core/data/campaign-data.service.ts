@@ -4,9 +4,9 @@ import { AdxApiService } from '../api/adx-api.service';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/delay';
 
-import {
-  GetCampaignsInterface,
-} from '../api/adx-api.interfaces';
+// import {
+//   GetCampaignsInterface,
+// } from '../api/adx-api.interfaces';
 
 @Injectable()
 export class CampaignDataService {
@@ -38,7 +38,7 @@ export class CampaignDataService {
   }];
 
   constructor(
-    private api: AdxApiService
+    private api: AdxApiService,
   ) {
   }
 

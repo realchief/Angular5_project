@@ -13,5 +13,7 @@ export const environment = {
 
   // URL of development API
   apiV1Url: 'https://api.adx1.com/v1.0.1',
-  apiUrl: 'https://api.adx1.com/module/Cpmplatform/UsersModule'
+  apiV102Url: 'https://api.adx1.com/v1.0.2',
+  apiUrl: 'https://api.adx1.com/api',
+  apiModuleUrl: 'https://api.adx1.com/module/Cpmplatform',
 };

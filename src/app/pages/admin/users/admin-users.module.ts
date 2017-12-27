@@ -6,7 +6,7 @@ import { AdminUserEditComponent } from './edit/admin-user-edit.component';
 @NgModule({
   declarations: [
     AdminUsersListComponent,  
-    AdminUserEditComponent
+    AdminUserEditComponent,
   ],
 })
 export class AdminUserModule { }

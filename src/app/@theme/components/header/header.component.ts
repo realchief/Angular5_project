@@ -97,6 +97,21 @@ export class HeaderComponent implements OnInit {
     case 'Admin Setup':
       this.router.navigate(['/pages/admin/advertisers']);
       return
+    case 'Billing History':
+      this.router.navigate(['/pages/billing']);
+      return
+    case 'Payments':
+      this.router.navigate(['/pages/admin/payments']);
+      return
+    case 'RTB Endpoints':
+      this.router.navigate(['/pages/rtb/tab']);
+      return
+    case 'Knowledge Base':
+      this.router.navigate(['/pages/knowledgebase']);
+      return
+    case 'Support':
+      this.router.navigate(['/pages/support']);
+      return
     default:
         // Do nothing
         console.log($event.title);

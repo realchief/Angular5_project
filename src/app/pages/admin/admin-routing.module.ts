@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AdminComponent } from './admin.component';
 import { AdminAdvertisersComponent } from './advertisers/admin-advertisers.component';
 import { AdminUsersComponent } from './users/admin-users.component';
+import { AdminPaymentsComponent } from './payments/admin-payments.component';
 
 const routes: Routes = [{
   path: '',
@@ -14,6 +15,9 @@ const routes: Routes = [{
   }, {
     path: 'users',
     component: AdminUsersComponent,
+  }, {
+    path: 'payments',
+    component: AdminPaymentsComponent,
   }],
 }];
 
@@ -27,4 +31,5 @@ export const routedComponents = [
   AdminComponent,
   AdminAdvertisersComponent,
   AdminUsersComponent,
+  AdminPaymentsComponent,
 ];

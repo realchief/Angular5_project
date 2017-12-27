@@ -1,12 +1,11 @@
 import { Injectable } from '@angular/core';
-import { UserAgentList } from '../models/user-agent-list';
 import { AdxApiService } from '../api/adx-api.service';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/delay';
 
-import {
-  GetCampaignsInterface,
-} from '../api/adx-api.interfaces';
+// import {
+//   GetCampaignsInterface,
+// } from '../api/adx-api.interfaces';
 
 @Injectable()
 export class UserAgentListDataService {
@@ -15,7 +14,7 @@ export class UserAgentListDataService {
   }];
 
   constructor(
-    private api: AdxApiService
+    // private api: AdxApiService,
   ) {
   }
 

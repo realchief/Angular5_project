@@ -8,52 +8,78 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 
 import {
-  Campaign,
-  Report,
-  Advertiser,
-  User,
-  Organization,
   Agency,
+  BillingHistory,
+  Campaign,
+  Constants,
+  Organization,
+  Payment,
+  Report,
+  RtbEndpoint2,
 } from '../models';
 import {
+  GetBillingInterface,
   GetCampaignsInterface,
-  GetReportsInterface,
-  GetAdvertisersInterface,
-  GetUsersInterface,
+  GetConstantsInterface,
   GetOrganizationInterface2,
+  GetPaymentNewInterface,
+  GetPaymentsInterface,
+  GetReportsInterface,
+  GetRtbNewInterface,
+  GetRtbEndpointsInterface2,
+  GetUsersInterface,
 } from './adx-api.interfaces';
 
-const API_URL = environment.apiV1Url;
+const API_V1_URL = environment.apiV1Url;
+const API_V102_URL = environment.apiV102Url;
+const API_URL = environment.apiUrl;
+const API_MODULE_URL = environment.apiModuleUrl;
 
 @Injectable()
 export class AdxApiService {
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
   ) {
   }
 
+  public getConstants(): Observable<Constants> {
+    return this.http
+    .get<GetConstantsInterface>(API_V102_URL + '/constants')
+    .map(result => new Constants(result.data))
+    .catch(this.handleError);
+  }
+
+  // Billing History
+  public getBillingHistory(): Observable<BillingHistory[]> {
+    return this.http
+      .put<GetBillingInterface>(API_URL + '/Billing/billing/', {})
+      .map(result => result.response.data.map(item => new BillingHistory(item)))
+      .catch(this.handleError);
+  }
+  
+  // Campaigns
   public getCampaigns(limit: number, offset: number): Observable<Campaign[]> {
-    let params = new HttpParams()
+    const params = new HttpParams()
       .set('limit', String(limit))
       .set('offset', String(offset));
 
     return this.http
-      .get<GetCampaignsInterface>(API_URL + '/campaigns', { params })
+      .get<GetCampaignsInterface>(API_V1_URL + '/campaigns', { params })
       .map(result => result.data.map(campaign => new Campaign(campaign)))
       .catch(this.handleError);
   }
 
   public createCampaign(campaign: Campaign): Observable<Campaign> {
     return this.http
-      .post(API_URL + '/campaigns', campaign)
+      .post(API_V1_URL + '/campaigns', campaign)
       .map(() => campaign)
       .catch(this.handleError);
   }
 
   public getCampaignById(campaignId: number): Observable<Campaign> {
     return this.http
-      .get<Campaign>(API_URL + '/campaigns/' + campaignId)
+      .get<Campaign>(API_V1_URL + '/campaigns/' + campaignId)
       .map(response => {
         return new Campaign(response);
       })
@@ -62,27 +88,121 @@ export class AdxApiService {
 
   public updateCampaign(campaign: Campaign): Observable<Campaign> {
     return this.http
-      .put(API_URL + '/campaigns/' + campaign.id, campaign)
+      .put(API_V1_URL + '/campaigns/' + campaign.id, campaign)
       .map(response => campaign)
       .catch(this.handleError);
   }
 
   public deleteCampaignById(campaignId: number): Observable<null> {
     return this.http
-      .delete(API_URL + '/campaigns/' + campaignId)
+      .delete(API_V1_URL + '/campaigns/' + campaignId)
       .map(response => null)
       .catch(this.handleError);
   }
 
   // Reports
   public getReports(limit: number, offset: number): Observable<Report[]> {
-    let params = new HttpParams()
+    const params = new HttpParams()
       .set('limit', String(limit))
       .set('offset', String(offset));
 
     return this.http
-      .get<GetReportsInterface>(API_URL + '/reports', { params })
-      .map(result => result.data.map(report => new Report(report)))
+      .get<GetReportsInterface>(API_V1_URL + '/reports', { params })
+      .map(result => result.data.map(item => new Report(item)))
+      .catch(this.handleError);
+  }
+
+  // Admin - Organizations
+  public getOrganizations(limit: number, offset: number): Observable<Organization[]> {
+    const params = new HttpParams()
+      .set('limit', String(limit))
+      .set('offset', String(offset));
+
+    return this.http
+      .get<GetOrganizationInterface2>(API_MODULE_URL + '/UsersModule/organizations/', { params })
+      .map(result => result.response.data.map(item => new Organization(item)))
+      .catch(this.handleError);
+  }
+
+  public updateOrganization(organizaion: Organization): Observable<Organization> {
+    return this.http
+      .put(API_MODULE_URL + '/UsersModule/organizations' + organizaion.id, organizaion)
+      .map(response => organizaion)
+      .catch(this.handleError);
+  }
+
+  public getOrganizationById(id: number): Observable<Organization> {
+    return this.http
+      .get<Organization>(API_MODULE_URL + '/UsersModule/organizations' + id)
+      .map(response => {
+        return new Organization(response);
+      })
+      .catch(this.handleError);
+  }
+
+  // Admin - Agencies
+  public getAgencies(organizationId: number, limit: number, offset: number): Observable<Agency[]> {
+    const params = new HttpParams()
+      .set('limit', String(limit))
+      .set('offset', String(offset));
+
+    return this.http
+      .get<GetUsersInterface>(API_V1_URL + '/agencies' + organizationId, { params })
+      .map(result => result.data.map(agency => new Agency(agency)))
+      .catch(this.handleError);
+  }
+
+  public updateAgency(agency: Agency): Observable<Agency> {
+    return this.http
+      .put(API_URL + '/agencies' + agency.id, agency)
+      .map(response => agency)
+      .catch(this.handleError);
+  }
+
+  public getAgencyById(organizationId: number, agencyId: number): Observable<Agency> {
+    return this.http
+      .get<Agency>(API_URL + '/organizations' + organizationId + '/agencies' + agencyId)
+      .map(response => {
+        return new Agency(response);
+      })
+      .catch(this.handleError);
+  }
+
+  // Admin - RTB Endpooints
+  public getRtbNew(): Observable<Object> {
+    return this.http
+      .get<GetRtbNewInterface>(API_MODULE_URL + '/Rtb/new/')
+      .map(result => result.response.data)
+      .catch(this.handleError);
+  }
+
+  public getRtbEndpoins(limit: number, offset: number): Observable<RtbEndpoint2[]> {
+    const params = new HttpParams()
+      .set('limit', String(limit))
+      .set('offset', String(offset));
+
+    return this.http
+      .get<GetRtbEndpointsInterface2>(API_MODULE_URL + '/rtb', { params })
+      .map(result => result.response.data.map(item => new RtbEndpoint2(item)))
+      .catch(this.handleError);
+  }
+
+  // Admin - Payment
+  public getPaymentNew(): Observable<Object> {
+    return this.http
+      .get<GetPaymentNewInterface>(API_MODULE_URL + '/Payment/new')
+      .map(result => result.response.data.utype)
+      .catch(this.handleError);
+  }
+
+  public getPayments(limit: number, offset: number): Observable<Payment[]> {
+    const params = new HttpParams()
+    .set('limit', String(limit))
+    .set('offset', String(offset));
+
+    return this.http
+      .get<GetPaymentsInterface>(API_MODULE_URL + '/Payment/', { params })
+      .map(result => result.response.data.map(item => new Payment(item)))
       .catch(this.handleError);
   }
 

@@ -11,7 +11,7 @@ export class Organization {
   }
 }
 
-export class Organiztion2 {
+export class Organization2 {
   active: number = 0;
   agency_user_id: string = '';
   balance: number = 0;
@@ -20,6 +20,6 @@ export class Organiztion2 {
   min_allowed_balance: number = 0;
   name: string = '';
   subdomain_id: number = 0;
-  username: string = ''
+  username: string = '';
   utype: number = 0;
 }

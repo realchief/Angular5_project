@@ -7,5 +7,5 @@ export const environment = {
   production: true,
 
   // URL of development API
-  apiUrl: 'https://api.adx1.com/v1.0.1'
+  apiUrl: 'https://api.adx1.com/v1.0.1',
 };

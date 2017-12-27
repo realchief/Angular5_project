@@ -15,7 +15,7 @@ const SERVICES = [
   StateService,
   SmartTableService,
   PlayerService,
-  CampaignDataService
+  CampaignDataService,
 ];
 
 @NgModule({

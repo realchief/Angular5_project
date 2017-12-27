@@ -5,6 +5,7 @@ import { DashboardModule } from './dashboard/dashboard.module';
 import { PagesRoutingModule } from './pages-routing.module';
 import { ThemeModule } from '../@theme/theme.module';
 import { ProfileModule } from './profile/profile.module';
+import { BillingHistoryModule } from './billing/billing-history.module';
 
 const PAGES_COMPONENTS = [
   PagesComponent,
@@ -16,6 +17,7 @@ const PAGES_COMPONENTS = [
     ThemeModule,
     DashboardModule,
     ProfileModule,
+    BillingHistoryModule,
   ],
   declarations: [
     ...PAGES_COMPONENTS,

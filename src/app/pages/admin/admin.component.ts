@@ -4,5 +4,4 @@ import { Component } from '@angular/core';
   selector: 'adx-admin',
   template: `<router-outlet></router-outlet>`,
 })
-export class AdminComponent {
-}
+export class AdminComponent {}

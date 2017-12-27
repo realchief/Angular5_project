@@ -166,7 +166,7 @@ export class AdxApiAuthProvider extends NbAbstractAuthProvider {
       .set('grant_type', 'password')
       .set('username', data.email)
       .set('password', data.password);
-    
+
     const headers = new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded' });
 
     return this.http.post(url, body.toString(), { headers, observe: 'response' })
@@ -186,8 +186,8 @@ export class AdxApiAuthProvider extends NbAbstractAuthProvider {
             res,
             this.getConfigValue('login.redirect.failure'),
             [],
-            this.getConfigValue('messages.getter')('login', res)
-          )
+            this.getConfigValue('messages.getter')('login', res),
+          );
         }
         return new NbAuthResult(
           true,
@@ -287,5 +287,5 @@ export class AdxApiAuthProvider extends NbAbstractAuthProvider {
     }
 
     return new NbAuthResult(true, this.createSuccessResponse(data), '/', ['Successfully logged in.']);
-  }  
+  }
 }

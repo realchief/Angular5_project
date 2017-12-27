@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { PagesComponent } from './pages.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProfileComponent } from './profile/profile.component';
+import { BillingHistoryComponent } from './billing/billing-history.component';
 
 const routes: Routes = [{
   path: '',
@@ -20,6 +21,12 @@ const routes: Routes = [{
   },{
     path: 'admin',
     loadChildren: './admin/admin.module#AdminModule',
+  },{
+    path: 'billing',
+    component: BillingHistoryComponent,
+  },{
+    path: 'rtb',
+    loadChildren: './rtb/rtb.module#RtbModule',
   },{
     path: 'ui-features',
     loadChildren: './ui-features/ui-features.module#UiFeaturesModule',
