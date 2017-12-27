@@ -28,7 +28,7 @@ const authOptions = {
     email: {
       service: AdxApiAuthProvider,
       config: {
-        baseEndpoint: environment.apiUrl,
+        baseEndpoint: environment.apiV1Url,
         login: {
           endpoint: '/auth',
           method: 'post',

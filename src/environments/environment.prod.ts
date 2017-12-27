@@ -7,5 +7,8 @@ export const environment = {
   production: true,
 
   // URL of development API
-  apiUrl: 'https://api.adx1.com/v1.0.1',
+  apiV1Url: 'https://api.adx1.com/v1.0.1',
+  apiV102Url: 'https://api.adx1.com/v1.0.2',
+  apiUrl: 'https://api.adx1.com/api',
+  apiModuleUrl: 'https://api.adx1.com/module/Cpmplatform',
 };
