@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Location } from '@angular/common';
 import { UserService } from '../../@core/data/users.service';
 import { User } from '../../@core/models';
 
@@ -9,11 +10,34 @@ import { User } from '../../@core/models';
 })
 export class ProfileComponent {
   user = {};
+  oldPassword = '';
+  newPassword = '';
+  confirmPassword = '';
 
-  constructor(private service: UserService) {
+  constructor(private service: UserService, private location: Location) {
     this.service.getProfile().subscribe(profile => {
+      // console.log(profile);
       this.user = profile ;
     })
   }
 
+  saveClicked(event) {
+    const profileData = {
+      'User_Me[old_password]': this.oldPassword,
+      'User_Me[password]': this.newPassword,
+      'Notifications[shortage]': 0
+    }
+
+    this.service.updateProfile(profileData).subscribe(result => {
+      console.log(result)
+      if (result.success === 'true') {
+
+      }
+    })
+  }
+
+  cancelClicked(event) {
+    console.log(event)
+    this.location.back();
+  }
 }

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
 
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
@@ -32,6 +32,7 @@ import {
   GetRtbEndpointsInterface2,
   GetCurrentUserInterface2,
   GetSettingsProfileInterface,
+  UpdateProfileInterface,
 } from './adx-api.interfaces';
 
 const API_V1_URL = environment.apiV1Url;
@@ -218,13 +219,26 @@ export class AdxApiService {
       .catch(this.handleError);
   }
 
+  public updateProfile(profileData): Observable<any> {
+      let headers = new HttpHeaders({'Content-Type': 'application/x-www-form-urlencoded'});
+      let body = new URLSearchParams();
+      Object.keys(profileData).map(key => {
+        body.append(key, profileData[key]);
+      })
+   
+      return this.http
+        .put<UpdateProfileInterface>(API_URL + '/Users/saveProfile/', body, { headers })
+        .map(result => result.response.data)
+        .catch(this.handleError);
+  }
+
   // Settings
   public getSettingsProfile(): Observable<Profile> {
     return this.http
       .get<GetSettingsProfileInterface>(API_URL + '/Settings/profile/')
       .map(result => new Profile(result.response.data))
       .catch(this.handleError);
-}
+  }
 
   private handleError (error: Response | any) {
     console.error('ApiService::handleError', error);

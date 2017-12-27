@@ -57,6 +57,10 @@ export class UserService {
       });
   }
 
+  updateProfile(profileData): Observable<any> {
+    return this.api.updateProfile(profileData);
+  }
+
   getCurrentUser(): Observable<User> {
     return this.api.getCurrentUser();
   }

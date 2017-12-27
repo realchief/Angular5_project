@@ -122,3 +122,14 @@ export interface GetSettingsProfileInterface {
   success: boolean;
   totalCount: number;
 }
+
+export interface UpdateProfileInterface {
+  response: {
+    data: {
+      success: string;
+    };
+  };
+  messasge: string;
+  success: boolean;
+  totalCount: number;
+}

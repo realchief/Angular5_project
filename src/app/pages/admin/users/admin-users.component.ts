@@ -4,5 +4,4 @@ import { Component } from '@angular/core';
   selector: 'adx-admin-users',
   template: `<router-outlet></router-outlet>`,
 })
-export class AdminUsersComponent {
-}
+export class AdminUsersComponent {}
