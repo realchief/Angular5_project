@@ -15,7 +15,7 @@ const routes: Routes = [{
     component: RtbTabComponent,
   }, {
     path: 'ssp',
-    component: RtbSSPComponent,
+    loadChildren: './ssp/rtb-ssp.module#RtbSSPModule',
   }],
 }];
 
@@ -28,7 +28,5 @@ export class RtbRoutingModule { }
 export const routedComponents = [
   RtbComponent,
   RtbTabComponent,
-  RtbSSPComponent,
   RtbSSPTableComponent,
-  RtbSSPFormComponent,
 ];
