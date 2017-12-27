@@ -1,7 +1,20 @@
 <div class="row">
   <div class="col-lg-9">
+    <nb-actions
+      size="medium"
+      class="header-container"
+      [class.right]="position === 'normal'"
+      [class.left]="position === 'inverse'">
+        <nb-action class="control-item" (click)="navClicked('admin')">Admin</nb-action>
+        <nb-action class="control-item" (click)="navClicked('adavertisers')">Advertisers</nb-action>
+        <nb-action class="control-item">Edit</nb-action>
+    </nb-actions>    
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-9">
     <nb-card>
-        <nb-card-header>Advertiser</nb-card-header>
+        <nb-card-header>{{user.name}}</nb-card-header>
         <nb-card-body>
           <form class="form-horizontal">
             <div class="form-group row">
@@ -22,64 +35,27 @@
               </div>
             </div>
             <div class="form-group row">
-              <label for="inputPassword3" class="col-sm-3 form-control-label">Campaign Name</label>
+              <label for="inputPassword3" class="col-sm-3 form-control-label">Agency</label>
               <div class="col-sm-9">
-                <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
+                <input type="text" class="form-control" id="inputPassword3" placeholder="Agency">
               </div>
             </div>
             <div class="form-group row">
-              <label for="inputPassword3" class="col-sm-3 form-control-label">IAB Category</label>
+              <label for="inputPassword3" class="col-sm-3 form-control-label">Advertiser Name</label>
               <div class="col-sm-9">
-                <select class="form-control">
-                  <option>Books & Literature</option>
-                  <option>Celebrity Fan/Gossip</option>
-                  <option>Fine Art</option>
-                  <option>Humor</option>
-                  <option>Movies</option>
-                </select>
+                <input type="text" class="form-control" id="inputPassword3" placeholder="Advertiser Name">
               </div>
             </div>
             <div class="form-group row">
-              <label for="inputPassword3" class="col-sm-3 form-control-label">Daily Spend Cap</label>
+              <label for="inputPassword3" class="col-sm-3 form-control-label">Credit</label>
               <div class="col-sm-9">
-                <nb-checkbox>No daily spend cap</nb-checkbox>
+                <input type="text" class="form-control" id="inputPassword3">
               </div>
             </div>
             <div class="form-group row">
-              <label for="inputPassword3" class="col-sm-3 form-control-label">Campaign Frequency Cap</label>
+              <label for="inputPassword3" class="col-sm-3 form-control-label">Margin</label>
               <div class="col-sm-9">
-                <nb-checkbox>No frequency cap</nb-checkbox>
-              </div>
-            </div>
-            <div class="form-group row">
-              <label for="inputPassword3" class="col-sm-3 form-control-label">Attribution & Tracking</label>
-              <div class="col-sm-9">
-                <nb-checkbox>Enabled</nb-checkbox>
-              </div>
-            </div>
-            <div class="form-group row">
-              <label for="inputPassword3" class="col-sm-3 form-control-label">Time Zone</label>
-              <div class="col-sm-9">
-                <select class="form-control">
-                  <option>Books & Literature</option>
-                  <option>Celebrity Fan/Gossip</option>
-                  <option>Fine Art</option>
-                  <option>Humor</option>
-                  <option>Movies</option>
-                </select>
-              </div>
-            </div>
-            <div class="form-group row">
-              <label for="inputPassword3" class="col-sm-3 form-control-label">Custom Data</label>
-              <div class="col-sm-9">
-                <input type="password" class="form-control" id="inputPassword3" placeholder="Custom Data">
-              </div>
-            </div>
-            <div class="form-group row">
-              <div class="offset-sm-3 col-sm-9">
-                <div class="checkbox">
-                  <nb-checkbox>Budget flights</nb-checkbox>
-                </div>
+                <input type="text" class="form-control" id="inputPassword3">
               </div>
             </div>
           </form>
@@ -87,7 +63,8 @@
         <nb-card-footer>
           <div class="form-group row">
             <div class="offset-sm-3 col-sm-9">
-              <button type="submit" class="btn btn-warning">Next</button>
+              <button type="submit" class="btn btn-info">Save</button>
+              <button type="submit" class="btn btn-primary">Cancel</button>
             </div>
           </div>
         </nb-card-footer>

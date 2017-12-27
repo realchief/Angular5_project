@@ -14,12 +14,10 @@ import { AdminDataService } from '../../@core/data/admin-data.service';
   imports: [
     ThemeModule,
     Ng2SmartTableModule,
-    AdminRoutingModule,
     AdminTabModule,
     AdminAdvertisersModule,
-    AdminAdvertisersRoutingModule,
     AdminUsersModule,
-    AdminUsersRoutingModule,
+    AdminRoutingModule,
   ],
   declarations: [
     ...routedComponents,

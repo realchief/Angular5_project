@@ -66,10 +66,9 @@ export class AdminAdvertisersListComponent {
     this.service.getOrganizations(100, 0).subscribe(data => {
       this.source.load(data);
     })
-    // this.source.load(this.service.getOrganizationData())
   }
 
   onEdit($event): void {
-    this.router.navigate(['/pages/admin/advertisers/edit', { id: $event.data.id }])
+    this.router.navigate([`/pages/admin/advertisers/${$event.data.id}/edit`])
   }
 }

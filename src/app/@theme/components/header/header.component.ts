@@ -95,7 +95,7 @@ export class HeaderComponent implements OnInit {
       this.router.navigate(['/pages/profile']);
       return;
     case 'Admin Setup':
-      this.router.navigate(['/pages/admin/tab']);
+      this.router.navigate(['/pages/admin/tabs']);
       return
     case 'Billing History':
       this.router.navigate(['/pages/billing']);

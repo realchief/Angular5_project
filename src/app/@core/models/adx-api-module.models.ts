@@ -112,3 +112,44 @@ export class User {
   }
 }
 
+export class User2 {
+  active: string = '';
+  address: string = '';
+  agency_user_id: number = 0;
+  city: string = '';
+  commission: string = '';
+  email: string = '';
+  id: string = '';
+  margin: number = 0;
+  margin_managed_ssps: number = 0;
+  margin_unmanaged_ssps: number = 0;
+  min_allowed_balance: string = '';
+  moderation_creatives: string = '';
+  moderation_tmt: string = '';
+  name: string = '';
+  owner_exchange_commission: string = '';
+  owner_house_commission: string = '';
+  phone: string = '';
+  skype: string = '';
+  subdomain_id: string = '';
+  username: string = '';
+  utype: string = '';
+
+  constructor(values: Object = {}) {
+    Object.assign(this, values);
+  }
+}
+
+export class Permission2 {
+  active: string = '';
+  created: string = '';
+  email: string = '';
+  id: string = '';
+  last_login: string = '';
+  name: string = '';
+  username: string = '';
+
+  constructor(values: Object = {}) {
+    Object.assign(this, values);
+  }
+}

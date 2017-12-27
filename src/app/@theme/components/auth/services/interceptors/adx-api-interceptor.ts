@@ -17,7 +17,7 @@ export class AdxApiInterceptor implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     return this.authService.getToken()
       .switchMap((token: AdxApiAuthToken) => {
-        console.log(token);
+        // console.log(token);
         if (token && token.getValue()) {
           req = req.clone({
             setHeaders: {

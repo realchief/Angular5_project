@@ -38,24 +38,24 @@ export class AdminUsersListComponent {
         title: 'Name',
         type: 'string',
       },
+      email: {
+        title: 'Email',
+        type: 'string',
+      },
+      username: {
+        title: 'Username',
+        type: 'number',
+      },
       id: {
         title: 'ID',
         type: 'string',
       },
+      last_login: {
+        title: 'Last Login',
+        type: 'string',
+      },
       status: {
         title: 'Status',
-        type: 'number',
-      },
-      currentBalance: {
-        title: 'Current Balance',
-        type: 'string',
-      },
-      credit: {
-        title: 'Credit',
-        type: 'string',
-      },
-      margin: {
-        title: 'Margin',
         type: 'number',
       },
     },
@@ -64,9 +64,9 @@ export class AdminUsersListComponent {
   source: LocalDataSource = new LocalDataSource();
 
   constructor(private service: AdminDataService, private router: Router) {
-    // this.service.getUsers(100, 0).subscribe(data => {
-    //   this.source.load(data);
-    // })
+    this.service.getPermissions(100, 0, 'id DESC').subscribe(data => {
+      this.source.load(data);
+    })
   }
 
   onEdit($event): void {

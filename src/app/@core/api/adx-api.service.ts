@@ -18,6 +18,9 @@ import {
   Report,
   RtbEndpoint2,
   User,
+  User2,
+  Permission,
+  Permission2,
 } from '../models';
 import {
   GetAgenciesInterface,
@@ -27,10 +30,12 @@ import {
   GetOrganizationInterface2,
   GetPaymentNewInterface,
   GetPaymentsInterface,
+  GetPermissionsInterface,
   GetReportsInterface,
   GetRtbNewInterface,
   GetRtbEndpointsInterface2,
-  GetCurrentUserInterface2,
+  GetUserInterface,
+  GetUserInterface2,
   GetSettingsProfileInterface,
   UpdateProfileInterface,
 } from './adx-api.interfaces';
@@ -211,10 +216,23 @@ export class AdxApiService {
       .catch(this.handleError);
   }
 
+  // Admin - Permission
+  public getPermissions2(limit: number, offset: number, sort: string): Observable<Permission2[]> {
+    const params = new HttpParams()
+    .set('limit', String(limit))
+    .set('offset', String(offset))
+    .set('sort', String(sort));
+
+    return this.http
+      .get<GetPermissionsInterface>(API_MODULE_URL + '/UsersModule/permissions/')
+      .map(result => result.response.data.map(item => new Permission2(item)))
+      .catch(this.handleError);
+  }
+  
   // Users
   public getCurrentUser(): Observable<User> {
     return this.http
-      .get<GetCurrentUserInterface2>(API_URL + '/Users/current/')
+      .get<GetUserInterface>(API_URL + '/Users/current/')
       .map(result => new User(result.response.data))
       .catch(this.handleError);
   }
@@ -230,6 +248,16 @@ export class AdxApiService {
         .put<UpdateProfileInterface>(API_URL + '/Users/saveProfile/', body, { headers })
         .map(result => result.response.data)
         .catch(this.handleError);
+  }
+
+  public getUserById2(id: number): Observable<User2> {
+    const params = new HttpParams()
+      .set('user_id', String(id))
+
+    return this.http
+      .get<GetUserInterface2>(API_MODULE_URL + '/UsersModule/user/', { params })
+      .map(result => new User2(result.response.data.user))
+      .catch(this.handleError);
   }
 
   // Settings

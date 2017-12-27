@@ -6,6 +6,8 @@ import 'rxjs/add/operator/delay';
 import {
   Organization,
   Payment,
+  User2,
+  Permission2,
 } from '../models';
 
 @Injectable()
@@ -60,5 +62,13 @@ export class AdminDataService {
 
   getPayments(limit: number, offset: number): Observable<Payment[]> {
     return this.api.getPayments(limit, offset);
+  }
+
+  getUserById2(id: number): Observable<User2> {
+    return this.api.getUserById2(id);
+  }
+
+  getPermissions(limit: number, offset: number, sort: string): Observable<Permission2[]> {
+    return this.api.getPermissions2(limit, offset, sort);
   }
 }

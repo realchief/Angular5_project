@@ -7,17 +7,32 @@ import { AdminAdvertisersComponent } from './advertisers/admin-advertisers.compo
 import { AdminUsersComponent } from './users/admin-users.component';
 import { AdminPaymentsComponent } from './payments/admin-payments.component';
 import { AdminAdvertisersListComponent } from './advertisers/list/admin-advertisers-list.component';
+import { AdminAdvertiserFormComponent } from './advertisers/form/admin-advertiser-form.component';
 import { AdminUsersListComponent } from './users/list/admin-users-list.component';
 
 const routes: Routes = [{
   path: '',
   component: AdminComponent,
   children: [{
-    path: 'tab',
+    path: 'tabs',
     component: AdminTabComponent,
+    children: [{
+      path: '',
+      redirectTo: 'advertisers',
+      pathMatch: 'full',
+    }, {
+      path: 'advertisers',
+      component: AdminAdvertisersListComponent,
+    }, {
+      path: 'users',
+      component: AdminUsersListComponent,
+    }],
   }, {
-    path: 'advertisers',
-    loadChildren: './advertisers/admin-advertisers.module#AdminAdvertisersModule',
+    path: 'advertisers/:id/edit',
+    component: AdminAdvertiserFormComponent,
+  // }, {
+  //   path: 'advertisers',
+  //   loadChildren: './advertisers/admin-advertisers.module#AdminAdvertisersModule',
   }, {
     path: 'users',
     loadChildren: './users/admin-users.module#AdminUsersModule',
