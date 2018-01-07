@@ -20,6 +20,7 @@ import {
   User,
   User2,
   Permission2,
+  IdName,
 } from '../models';
 import {
   GetAgenciesInterface,
@@ -35,9 +36,13 @@ import {
   GetRtbEndpointsInterface2,
   GetUserInterface,
   GetUserInterface2,
+  GetUserModuleNewInterface,
+  SaveUserModuleInterface,
+  GetUserAgencyInterface,
   GetSettingsProfileInterface,
   UpdateProfileInterface,
 } from './adx-api.interfaces';
+import { URLSearchParams } from '@angular/http/src/url_search_params';
 
 const API_V1_URL = environment.apiV1Url;
 const API_V102_URL = environment.apiV102Url;
@@ -50,6 +55,12 @@ export class AdxApiService {
   constructor(
     private http: HttpClient,
   ) {
+  }
+
+  private formData(data) {
+    return Object.keys(data).reduce((prev, key) => {
+      return prev.set(key, data[key]);
+    }, new HttpParams());
   }
 
   public getConstants(): Observable<Constants> {
@@ -238,13 +249,10 @@ export class AdxApiService {
 
   public updateProfile(profileData): Observable<any> {
       const headers = new HttpHeaders({'Content-Type': 'application/x-www-form-urlencoded'});
-      const body = new URLSearchParams();
-      Object.keys(profileData).map(key => {
-        body.append(key, profileData[key]);
-      });
+      const body = this.formData(profileData);
 
       return this.http
-        .put<UpdateProfileInterface>(API_URL + '/Users/saveProfile/', body, { headers })
+        .put<UpdateProfileInterface>(`${API_URL}/Users/saveProfile/`, body, { headers })
         .map(result => result.response.data)
         .catch(this.handleError);
   }
@@ -256,6 +264,30 @@ export class AdxApiService {
     return this.http
       .get<GetUserInterface2>(API_MODULE_URL + '/UsersModule/user/', { params })
       .map(result => new User2(result.response.data.user))
+      .catch(this.handleError);
+  }
+
+  public getUserModuleNew(): Observable<any> {
+    return this.http
+      .get<GetUserModuleNewInterface>(API_MODULE_URL + '/UsersModule/new/')
+      .map(result => result.response.data)
+      .catch(this.handleError);
+  }
+
+  public saveUserModule(userData): Observable<any> {
+    const headers = new HttpHeaders({'Content-Type': 'application/x-www-form-urlencoded'});
+    const body = this.formData(userData);
+
+    return this.http
+      .put<SaveUserModuleInterface>(`${API_MODULE_URL}/UsersModule/save/`, body, { headers })
+      .map(result => result.response)
+      .catch(this.handleError);
+  }
+
+  public getUserAgency(orgId: number): Observable<IdName[]> {
+    return this.http
+      .get<GetUserAgencyInterface>(`${API_URL}/Users/${orgId}/agency/`)
+      .map(result => result.response.data.map(item => new IdName(item)))
       .catch(this.handleError);
   }
 

@@ -143,6 +143,27 @@ export interface GetUserInterface2 {
   totalCount: number;
 }
 
+export interface GetUserModuleNewInterface {
+  response: {
+    data: {
+      active_type: IdName[],
+      orrganizations: IdName[],
+    };
+    messasge: string;
+    success: boolean;
+    totalCount: number;
+  };
+}
+
+export interface GetUserAgencyInterface {
+  response: {
+    data: IdName[];
+    messasge: string;
+    success: boolean;
+    totalCount: number;
+  };
+}
+
 export interface GetSettingsProfileInterface {
   response: {
     data: Profile;
@@ -157,8 +178,20 @@ export interface UpdateProfileInterface {
     data: {
       success: string;
     };
+    messasge: string;
+    success: boolean;
+    time: number;
+    totalCount: number;
   };
-  messasge: string;
-  success: boolean;
-  totalCount: number;
+}
+
+export interface SaveUserModuleInterface {
+  response: {
+    data: {
+      success: string;
+    };
+    messasge: string;
+    success: boolean;
+    totalCount: number;
+  };
 }

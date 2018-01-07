@@ -9,6 +9,7 @@ import { AdminPaymentsComponent } from './payments/admin-payments.component';
 import { AdminAdvertisersListComponent } from './advertisers/list/admin-advertisers-list.component';
 import { AdminAdvertiserFormComponent } from './advertisers/form/admin-advertiser-form.component';
 import { AdminUsersListComponent } from './users/list/admin-users-list.component';
+import { AdminUserFormComponent } from './users/form/admin-user-form.component';
 
 const routes: Routes = [{
   path: '',
@@ -36,6 +37,9 @@ const routes: Routes = [{
   }, {
     path: 'users',
     loadChildren: './users/admin-users.module#AdminUsersModule',
+  }, {
+    path: 'users/:id/edit',
+    component: AdminUserFormComponent,
   }, {
     path: 'payments',
     component: AdminPaymentsComponent,

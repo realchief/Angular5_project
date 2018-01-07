@@ -1,6 +1,10 @@
 export class IdName {
   id: string = '';
   name: string = '';
+
+  constructor(values: Object = {}) {
+    Object.assign(this, values);
+  }
 }
 
 export class Permission {
@@ -11,4 +15,8 @@ export class Permission {
   page: number;
   sort: number;
   type: number;
+
+  constructor(values: Object = {}) {
+    Object.assign(this, values);
+  }
 }

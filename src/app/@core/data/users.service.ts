@@ -4,8 +4,9 @@ import 'rxjs/add/observable/of';
 import 'rxjs/add/observable/forkJoin';
 
 import { AdxApiService } from '../api/adx-api.service';
-// import BaseService from './base.service';
-import { User, ProfileData } from '../models';
+import { HelperService } from '../utils/helper.service';
+
+import { User, ProfileData, IdName } from '../models';
 
 // let counter = 0;
 
@@ -22,18 +23,7 @@ export class UserService {
 
   // private userArray: any[];
 
-  constructor(protected api: AdxApiService) {
-  }
-
-  convertArrayToObjectList(constants): any {
-    return Object.keys(constants).reduce((obj, key) => {
-      const item = constants[key];
-      obj[key] = item.reduce((prev, next) => {
-        prev[next.id] = next;
-        return prev;
-      }, {});
-      return obj;
-    }, {});
+  constructor(protected api: AdxApiService, private hellper: HelperService) {
   }
 
   getUsers(): Observable<any> {
@@ -48,7 +38,6 @@ export class UserService {
     return Observable.forkJoin([currentUserOb, constantsOb, settingsProfileOb])
       .map((data: any[]) => {
         const currentUser = data[0];
-        // const constants = this.convertArrayToObjectList(data[1]);
         const settingsProfile = data[2];
 
         const profileData = new ProfileData(currentUser);
@@ -63,5 +52,13 @@ export class UserService {
 
   getCurrentUser(): Observable<User> {
     return this.api.getCurrentUser();
+  }
+
+  getAgency(userId): Observable<IdName[]> {
+    return this.api.getUserAgency(userId);
+  }
+
+  getUserModuleNew(): Observable<any> {
+    return this.api.getUserModuleNew();
   }
 }

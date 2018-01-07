@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
-import { AdxApiService } from '../api/adx-api.service';
 
 @Injectable()
-export default class BaseService {
-  constructor(protected api: AdxApiService) {}
+export class HelperService {
+  constructor() {}
 
   convertArrayToObjectList(constants): any {
     return Object.keys(constants).reduce((obj, key) => {
@@ -16,3 +15,4 @@ export default class BaseService {
     }, {});
   }
 }
+

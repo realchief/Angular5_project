@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AdxApiService } from '../api/adx-api.service';
+import { HelperService } from '../utils/helper.service';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/forkJoin';
 import 'rxjs/add/operator/delay';
@@ -14,21 +15,7 @@ export class RtbDataService {
     id: 1,
   }];
 
-  constructor(
-    private api: AdxApiService,
-  ) {
-  }
-
-  convertArrayToObjectList(constants): any {
-    return Object.keys(constants).reduce((obj, key) => {
-      const item = constants[key];
-      obj[key] = item.reduce((prev, next) => {
-        prev[next.id] = next;
-        return prev;
-      }, {});
-      return obj;
-    }, {});
-  }
+  constructor(private api: AdxApiService, private helper: HelperService) {}
 
   // GET SSP endpoint
   getEndpoints2(limit: number, offset: number): Observable<RtbEndpoint2[]> {
@@ -38,13 +25,9 @@ export class RtbDataService {
 
     return Observable.forkJoin([rtbNewOb, constantsOb, rtbEndpointsOb])
       .map((data: any[]) => {
-        const rtbNew = this.convertArrayToObjectList(data[0]);
-        // const constants = this.convertArrayToObjectList(data[1]);
+        const rtbNew = this.helper.convertArrayToObjectList(data[0]);
+        // const constants = this.helper.convertArrayToObjectList(data[1]);
         const rtbEndpoints: any[] = data[2];
-
-        // console.log(rtbNew);
-        // console.log(constants);
-        // console.log(rtbEndpoints);
 
         return rtbEndpoints.map(ep => {
           ep.supplyType = rtbNew.supply_type[ep.supply_type].name;

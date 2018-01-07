@@ -1,8 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LocalDataSource } from 'ng2-smart-table';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/of';
+import 'rxjs/add/observable/forkJoin';
 
 import { AdminDataService } from '../../../../@core/data/admin-data.service';
+import { HelperService } from '../../../../@core/utils/helper.service';
+
 // import { Advertiser } from '../../../../@core/models';
 // import { StatusRenderComponent } from '../../../../@theme/components/status-render-component';
 
@@ -15,7 +20,8 @@ import { AdminDataService } from '../../../../@core/data/admin-data.service';
     }
   `],
 })
-export class AdminAdvertisersListComponent {
+
+export class AdminAdvertisersListComponent implements OnInit {
 
   settings = {
     actions: {
@@ -45,11 +51,11 @@ export class AdminAdvertisersListComponent {
         title: 'Status',
         type: 'string',
       },
-      currentBalance: {
+      balance: {
         title: 'Current Balance',
         type: 'string',
       },
-      credit: {
+      min_allowed_balance: {
         title: 'Credit',
         type: 'string',
       },
@@ -61,11 +67,31 @@ export class AdminAdvertisersListComponent {
   };
 
   source: LocalDataSource = new LocalDataSource();
+  constants: any;
 
-  constructor(private service: AdminDataService, private router: Router) {
-    this.service.getOrganizations(100, 0).subscribe(data => {
+  constructor(private service: AdminDataService, private router: Router, private helper: HelperService) {
+  }
+
+  ngOnInit() {
+    this.getData().subscribe(data => {
       this.source.load(data);
-    });
+    })
+  }
+
+  getData() {
+    const getConstantsOb = this.service.getConstants();
+    const getOrganizationOb = this.service.getOrganizations(10000, 0);
+
+    return Observable.forkJoin([getConstantsOb, getOrganizationOb])
+      .map((data: any[]) => {
+        this.constants = this.helper.convertArrayToObjectList(data[0]);
+        const organizations = data[1];
+        organizations.map(org => {
+          org.margin = org.min_allowed_balance;
+          org.status = this.constants.statuses[org.active].name;
+        })
+        return organizations;
+      });
   }
 
   onEdit($event): void {

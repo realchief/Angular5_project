@@ -5,6 +5,7 @@ import { NbAuthModule, NbDummyAuthProvider } from '../@theme/components/auth';
 import { throwIfAlreadyLoaded } from './module-import-guard';
 import { DataModule } from './data/data.module';
 import { AnalyticsService } from './utils/analytics.service';
+import { HelperService } from './utils/helper.service';
 import { ApiModule } from './api/api.module';
 
 const NB_CORE_PROVIDERS = [
@@ -23,6 +24,7 @@ const NB_CORE_PROVIDERS = [
     },
   }).providers,
   AnalyticsService,
+  HelperService,
   ...ApiModule.forRoot().providers,
 ];
 

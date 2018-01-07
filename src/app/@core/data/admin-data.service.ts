@@ -4,6 +4,8 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/delay';
 
 import {
+  IdName,
+  Constants,
   Organization,
   Payment,
   User2,
@@ -70,5 +72,21 @@ export class AdminDataService {
 
   getPermissions(limit: number, offset: number, sort: string): Observable<Permission2[]> {
     return this.api.getPermissions2(limit, offset, sort);
+  }
+
+  getAgency(orgId): Observable<IdName[]> {
+    return this.api.getUserAgency(orgId);
+  }
+
+  getUserModuleNew(): Observable<any> {
+    return this.api.getUserModuleNew();
+  }
+
+  saveUserModule(userData): Observable<any> {
+    return this.api.saveUserModule(userData);
+  }
+
+  getConstants(): Observable<Constants> {
+    return this.api.getConstants();
   }
 }
