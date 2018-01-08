@@ -12,6 +12,7 @@ import {
   BillingHistory,
   Campaign,
   Constants,
+  NewUser,
   Organization,
   Payment,
   Profile,
@@ -65,7 +66,7 @@ export class AdxApiService {
 
   public getConstants(): Observable<Constants> {
     return this.http
-      .get<GetConstantsInterface>(API_V102_URL + '/constants')
+      .get<GetConstantsInterface>(`${API_V102_URL}/constants`)
       .map(result => new Constants(result.data))
       .catch(this.handleError);
   }
@@ -73,7 +74,7 @@ export class AdxApiService {
   // Billing History
   public getBillingHistory(): Observable<BillingHistory[]> {
     return this.http
-      .put<GetBillingInterface>(API_URL + '/Billing/billing/', {})
+      .put<GetBillingInterface>(`${API_URL}/Billing/billing/`, {})
       .map(result => result.response.data.map(item => new BillingHistory(item)))
       .catch(this.handleError);
   }
@@ -85,21 +86,21 @@ export class AdxApiService {
       .set('offset', String(offset));
 
     return this.http
-      .get<GetCampaignsInterface>(API_V1_URL + '/campaigns', { params })
+      .get<GetCampaignsInterface>(`${API_V1_URL}/campaigns`, { params })
       .map(result => result.data.map(campaign => new Campaign(campaign)))
       .catch(this.handleError);
   }
 
   public createCampaign(campaign: Campaign): Observable<Campaign> {
     return this.http
-      .post(API_V1_URL + '/campaigns', campaign)
+      .post(`${API_V1_URL}/campaigns`, campaign)
       .map(() => campaign)
       .catch(this.handleError);
   }
 
   public getCampaignById(campaignId: number): Observable<Campaign> {
     return this.http
-      .get<Campaign>(API_V1_URL + '/campaigns/' + campaignId)
+      .get<Campaign>(`${API_V1_URL}/campaigns/${campaignId}`)
       .map(response => {
         return new Campaign(response);
       })
@@ -108,14 +109,14 @@ export class AdxApiService {
 
   public updateCampaign(campaign: Campaign): Observable<Campaign> {
     return this.http
-      .put(API_V1_URL + '/campaigns/' + campaign.id, campaign)
+      .put(`${API_V1_URL}/campaigns/${campaign.id}`, campaign)
       .map(response => campaign)
       .catch(this.handleError);
   }
 
   public deleteCampaignById(campaignId: number): Observable<null> {
     return this.http
-      .delete(API_V1_URL + '/campaigns/' + campaignId)
+      .delete(`${API_V1_URL}/campaigns/${campaignId}`)
       .map(response => null)
       .catch(this.handleError);
   }
@@ -127,7 +128,7 @@ export class AdxApiService {
       .set('offset', String(offset));
 
     return this.http
-      .get<GetReportsInterface>(API_V1_URL + '/reports', { params })
+      .get<GetReportsInterface>(`${API_V1_URL}/reports`, { params })
       .map(result => result.data.map(item => new Report(item)))
       .catch(this.handleError);
   }
@@ -139,21 +140,21 @@ export class AdxApiService {
       .set('offset', String(offset));
 
     return this.http
-      .get<GetOrganizationInterface2>(API_MODULE_URL + '/UsersModule/organizations/', { params })
+      .get<GetOrganizationInterface2>(`${API_MODULE_URL}/UsersModule/organizations/`, { params })
       .map(result => result.response.data.map(item => new Organization(item)))
       .catch(this.handleError);
   }
 
   public updateOrganization(organizaion: Organization): Observable<Organization> {
     return this.http
-      .put(API_MODULE_URL + '/UsersModule/organizations' + organizaion.id, organizaion)
+      .put(`${API_MODULE_URL}/UsersModule/organizations` + organizaion.id, organizaion)
       .map(response => organizaion)
       .catch(this.handleError);
   }
 
   public getOrganizationById(id: number): Observable<Organization> {
     return this.http
-      .get<Organization>(API_MODULE_URL + '/UsersModule/organizations' + id)
+      .get<Organization>(`${API_MODULE_URL}/UsersModule/organizations/${id}`)
       .map(response => {
         return new Organization(response);
       })
@@ -167,21 +168,21 @@ export class AdxApiService {
       .set('offset', String(offset));
 
     return this.http
-      .get<GetAgenciesInterface>(API_V1_URL + '/agencies' + organizationId, { params })
+      .get<GetAgenciesInterface>(`${API_V1_URL}/agencies/${organizationId}`, { params })
       .map(result => result.data.map(agency => new Agency(agency)))
       .catch(this.handleError);
   }
 
   public updateAgency(agency: Agency): Observable<Agency> {
     return this.http
-      .put(API_URL + '/agencies' + agency.id, agency)
+      .put(`${API_URL}/agencies/${agency.id}`, agency)
       .map(response => agency)
       .catch(this.handleError);
   }
 
   public getAgencyById(organizationId: number, agencyId: number): Observable<Agency> {
     return this.http
-      .get<Agency>(API_URL + '/organizations' + organizationId + '/agencies' + agencyId)
+      .get<Agency>(`${API_URL}/organizations/${organizationId}/agencies/${agencyId}`)
       .map(response => {
         return new Agency(response);
       })
@@ -191,7 +192,7 @@ export class AdxApiService {
   // Admin - RTB Endpooints
   public getRtbNew(): Observable<Object> {
     return this.http
-      .get<GetRtbNewInterface>(API_MODULE_URL + '/Rtb/new/')
+      .get<GetRtbNewInterface>(`${API_MODULE_URL}/Rtb/new/`)
       .map(result => result.response.data)
       .catch(this.handleError);
   }
@@ -202,7 +203,7 @@ export class AdxApiService {
       .set('offset', String(offset));
 
     return this.http
-      .get<GetRtbEndpointsInterface2>(API_MODULE_URL + '/rtb', { params })
+      .get<GetRtbEndpointsInterface2>(`$${API_MODULE_URL}/rtb`, { params })
       .map(result => result.response.data.map(item => new RtbEndpoint2(item)))
       .catch(this.handleError);
   }
@@ -210,7 +211,7 @@ export class AdxApiService {
   // Admin - Payment
   public getPaymentNew(): Observable<Object> {
     return this.http
-      .get<GetPaymentNewInterface>(API_MODULE_URL + '/Payment/new')
+      .get<GetPaymentNewInterface>(`${API_MODULE_URL}/Payment/new`)
       .map(result => result.response.data.utype)
       .catch(this.handleError);
   }
@@ -221,7 +222,7 @@ export class AdxApiService {
     .set('offset', String(offset));
 
     return this.http
-      .get<GetPaymentsInterface>(API_MODULE_URL + '/Payment/', { params })
+      .get<GetPaymentsInterface>(`${API_MODULE_URL}/Payment/`, { params })
       .map(result => result.response.data.map(item => new Payment(item)))
       .catch(this.handleError);
   }
@@ -234,7 +235,7 @@ export class AdxApiService {
     .set('sort', String(sort));
 
     return this.http
-      .get<GetPermissionsInterface>(API_MODULE_URL + '/UsersModule/permissions/', { params })
+      .get<GetPermissionsInterface>(`${API_MODULE_URL}/UsersModule/permissions/`, { params })
       .map(result => result.response.data.map(item => new Permission2(item)))
       .catch(this.handleError);
   }
@@ -242,7 +243,7 @@ export class AdxApiService {
   // Users
   public getCurrentUser(): Observable<User> {
     return this.http
-      .get<GetUserInterface>(API_URL + '/Users/current/')
+      .get<GetUserInterface>(`${API_URL}/Users/current/`)
       .map(result => new User(result.response.data))
       .catch(this.handleError);
   }
@@ -262,14 +263,14 @@ export class AdxApiService {
       .set('user_id', String(id));
 
     return this.http
-      .get<GetUserInterface2>(API_MODULE_URL + '/UsersModule/user/', { params })
+      .get<GetUserInterface2>(`${API_MODULE_URL}/UsersModule/user/`, { params })
       .map(result => new User2(result.response.data.user))
       .catch(this.handleError);
   }
 
   public getUserModuleNew(): Observable<any> {
     return this.http
-      .get<GetUserModuleNewInterface>(API_MODULE_URL + '/UsersModule/new/')
+      .get<GetUserModuleNewInterface>(`${API_MODULE_URL}/UsersModule/new/`)
       .map(result => result.response.data)
       .catch(this.handleError);
   }
@@ -291,10 +292,17 @@ export class AdxApiService {
       .catch(this.handleError);
   }
 
+  public getNewUser(): Observable<NewUser> {
+    return this.http
+    .get<GetUserAgencyInterface>(`${API_URL}/Users/newuser/`)
+    .map(result => new NewUser(result.response.data))
+    .catch(this.handleError);
+}
+
   // Settings
   public getSettingsProfile(): Observable<Profile> {
     return this.http
-      .get<GetSettingsProfileInterface>(API_URL + '/Settings/profile/')
+      .get<GetSettingsProfileInterface>(`${API_URL}/Settings/profile/`)
       .map(result => new Profile(result.response.data))
       .catch(this.handleError);
   }

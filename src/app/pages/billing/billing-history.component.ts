@@ -49,7 +49,7 @@ export class BillingHistoryComponent {
         sort: true,
       },
       organization: {
-        title: 'Orgganization',
+        title: 'Organization',
         type: 'text',
         sort: true,
       },
@@ -60,7 +60,7 @@ export class BillingHistoryComponent {
 
   constructor(private service: BillingDataService) {
     this.service.getBillingHistory().subscribe(data => {
-      // this.source.load(data);
+      this.source.load(data);
     });
   }
 }

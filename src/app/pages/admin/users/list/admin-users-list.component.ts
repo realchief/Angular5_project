@@ -74,7 +74,7 @@ export class AdminUsersListComponent {
   }
 
   onEdit($event): void {
-    this.router.navigate(['/pages/admin/users/edit', { id: $event.data.id }]);
+    this.router.navigate([`/pages/admin/users/${$event.data.id}/edit`]);
   }
 
   onDeleteConfirm(event): void {

@@ -18,10 +18,6 @@ const routes: Routes = [{
     path: 'tabs',
     component: AdminTabComponent,
     children: [{
-      path: '',
-      redirectTo: 'advertisers',
-      pathMatch: 'full',
-    }, {
       path: 'advertisers',
       component: AdminAdvertisersListComponent,
     }, {
@@ -31,12 +27,6 @@ const routes: Routes = [{
   }, {
     path: 'advertisers/:id/edit',
     component: AdminAdvertiserFormComponent,
-  // }, {
-  //   path: 'advertisers',
-  //   loadChildren: './advertisers/admin-advertisers.module#AdminAdvertisersModule',
-  }, {
-    path: 'users',
-    loadChildren: './users/admin-users.module#AdminUsersModule',
   }, {
     path: 'users/:id/edit',
     component: AdminUserFormComponent,

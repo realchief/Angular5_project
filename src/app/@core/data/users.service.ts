@@ -6,7 +6,7 @@ import 'rxjs/add/observable/forkJoin';
 import { AdxApiService } from '../api/adx-api.service';
 import { HelperService } from '../utils/helper.service';
 
-import { User, ProfileData, IdName } from '../models';
+import { User, ProfileData, IdName, NewUser } from '../models';
 
 // let counter = 0;
 

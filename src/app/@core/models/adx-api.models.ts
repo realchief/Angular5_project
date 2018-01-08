@@ -1,3 +1,5 @@
+import { IdName } from "./index";
+
 export class Advertiser {
   id: number = 0;
   name: string = '';
@@ -62,6 +64,44 @@ export class Campaign {
   post_view_window_enabled: number = 1;
   post_view_window_period: number = 5;
   post_view_window: number = 0;
+
+  constructor(values: Object = {}) {
+    Object.assign(this, values);
+  }
+}
+
+export class NewUser {
+  active_type: IdName[];
+  organizations: {
+    id: number;
+    username: string;
+    utype: number;
+    subdomain_id: number;
+    agency_user_id: number;
+  }[];
+  objects: {
+    id: number;
+    username: string;
+    name: string;
+    email: string;
+    active: number;
+    subdomain_id: number;
+    agency_user_id: number;
+    utype: number;
+    balance: number;
+    min_allowed_balance: number;
+  }[];
+  permissions: {
+    id: number;
+    name: string;
+    interface_name: string;
+    page: number;
+    sort: number;
+    type: number;
+    everywhere: number;
+    default_value: string;
+  }[];
+  permission_methods: IdName[];
 
   constructor(values: Object = {}) {
     Object.assign(this, values);

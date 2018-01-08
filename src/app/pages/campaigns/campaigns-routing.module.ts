@@ -15,7 +15,7 @@ const routes: Routes = [{
     path: 'create',
     component: CampaignComponent,
   }, {
-    path: 'edit',
+    path: 'edit/:id',
     component: CampaignComponent,
   }],
 }];

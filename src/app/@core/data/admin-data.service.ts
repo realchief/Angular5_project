@@ -6,6 +6,7 @@ import 'rxjs/add/operator/delay';
 import {
   IdName,
   Constants,
+  NewUser,
   Organization,
   Payment,
   User2,
@@ -88,5 +89,9 @@ export class AdminDataService {
 
   getConstants(): Observable<Constants> {
     return this.api.getConstants();
+  }
+
+  getNewUser(): Observable<NewUser> {
+    return this.api.getNewUser();
   }
 }
