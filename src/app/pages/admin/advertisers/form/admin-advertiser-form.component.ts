@@ -6,7 +6,6 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/observable/forkJoin';
 import { AdminDataService } from '../../../../@core/data/admin-data.service';
-import { Advertiser } from '../../../../@core/models/index';
 
 import 'style-loader!angular2-toaster/toaster.css';
 
@@ -27,7 +26,7 @@ export class AdminAdvertiserFormComponent implements OnInit {
     private service: AdminDataService,
     private route: ActivatedRoute,
     private router: Router,
-    private toaster: ToasterService
+    private toaster: ToasterService,
   ) {}
 
   ngOnInit() {
@@ -37,7 +36,7 @@ export class AdminAdvertiserFormComponent implements OnInit {
 
         this.getAdevertiser(id).subscribe(result => {
           this.selectedAgency = result.agency_user_id;
-        })
+        });
       }
     });
 
@@ -46,7 +45,7 @@ export class AdminAdvertiserFormComponent implements OnInit {
         const orgId = result.organizations[0].id;
         this.service.getAgency(orgId).subscribe(agencies => {
           this.agencies = agencies;
-        })
+        });
       }
       this.active_type = result.active_type;
     });
@@ -60,7 +59,6 @@ export class AdminAdvertiserFormComponent implements OnInit {
       .map((data: any[]) => {
         const user = data[0];
         const organizations = data[2];
-        
         this.user = user;
         this.organizations = organizations;
         return user;
@@ -73,11 +71,11 @@ export class AdminAdvertiserFormComponent implements OnInit {
         this.showToast('info', 'Success', 'User data saved successfully.');
         setTimeout(() => {
           this.router.navigate(['/pages/admin/tabs/advertisers']);
-        }, 5000)
+        }, 5000);
       } else {
         this.showToast('error', 'Error', result.messasge);
       }
-    })
+    });
   }
 
   cancelClicked(event) {
@@ -104,7 +102,7 @@ export class AdminAdvertiserFormComponent implements OnInit {
     };
     this.toaster.popAsync(toast);
   }
-  
+
   navClicked(nav) {
     if (nav === 'admin') {
       this.router.navigate(['/pages/admin/tabs/users']);

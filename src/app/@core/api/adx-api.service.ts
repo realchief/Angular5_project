@@ -43,7 +43,6 @@ import {
   GetSettingsProfileInterface,
   UpdateProfileInterface,
 } from './adx-api.interfaces';
-import { URLSearchParams } from '@angular/http/src/url_search_params';
 
 const API_V1_URL = environment.apiV1Url;
 const API_V102_URL = environment.apiV102Url;

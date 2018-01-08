@@ -28,12 +28,12 @@ export class ProfileComponent implements OnInit {
 
   saveClicked(event) {
     // todo: check password
-    const profileData = this.oldPassword !== '' ?  
+    const profileData = this.oldPassword !== '' ?
       {
         'User_Me[old_password]': this.oldPassword,
         'User_Me[password]': this.newPassword,
         'Notifications[shortage]': this.notifications_shortage,
-      } : 
+      } :
       {
         'Notifications[shortage]': this.notifications_shortage,
       };

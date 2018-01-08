@@ -75,7 +75,7 @@ export class AdminAdvertisersListComponent implements OnInit {
   ngOnInit() {
     this.getData().subscribe(data => {
       this.source.load(data);
-    })
+    });
   }
 
   getData() {
@@ -89,7 +89,7 @@ export class AdminAdvertisersListComponent implements OnInit {
         organizations.map(org => {
           org.margin = org.min_allowed_balance;
           org.status = this.constants.statuses[org.active].name;
-        })
+        });
         return organizations;
       });
   }

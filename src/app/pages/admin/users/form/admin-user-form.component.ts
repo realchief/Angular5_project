@@ -2,12 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { ToasterService, ToasterConfig, Toast, BodyOutputType } from 'angular2-toaster';
-import { IMultiSelectOption, IMultiSelectTexts, IMultiSelectSettings } from 'angular-2-dropdown-multiselect';
+import { IMultiSelectOption, IMultiSelectSettings } from 'angular-2-dropdown-multiselect';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/observable/forkJoin';
 import { AdminDataService } from '../../../../@core/data/admin-data.service';
-import { HelperService } from '../../../../@core/utils/helper.service';
+// import { HelperService } from '../../../../@core/utils/helper.service';
 
 @Component({
   selector: 'adx-admin-user-form',
@@ -19,25 +19,25 @@ export class AdminUserFormComponent implements OnInit {
   password = '';
   password2 = '';
   advertisers = [];
-  selectedAdvertisers = [];
+  selectedAdvertisers: IMultiSelectOption;
   permission_methods = [];
   permissions = {};
-  selectedPermissions = {};
+  selectedPermissions: IMultiSelectOption;
   config: ToasterConfig;
-  
+
   // Settings configuration
   permissionSettings: IMultiSelectSettings = {
     checkedStyle: 'fontawesome',
     dynamicTitleMaxItems: 3,
-    displayAllSelectedText: true
+    displayAllSelectedText: true,
   };
 
   constructor(
     private service: AdminDataService,
     private route: ActivatedRoute,
     private router: Router,
-    private helper: HelperService,
-    private toaster: ToasterService
+    // private helper: HelperService,
+    private toaster: ToasterService,
   ) {}
 
   ngOnInit() {
@@ -49,10 +49,9 @@ export class AdminUserFormComponent implements OnInit {
           this.user = result.user;
           console.log(this.selectedPermissions);
         });
-        
         this.service.getOrganizations(10000, 0).subscribe(result => {
           this.advertisers = result;
-        })
+        });
       }
     });
   }
@@ -74,7 +73,7 @@ export class AdminUserFormComponent implements OnInit {
       newUser.permissions.map((item, index) => {
         permission_methods.map(pm => {
           this.permissions[pm.id].push(item);
-        })
+        });
         this.selectedPermissions[item.default_value].push(item.id);
       });
       this.permission_methods = permission_methods;
@@ -129,15 +128,15 @@ export class AdminUserFormComponent implements OnInit {
         this.showToast('info', 'Success', 'User data saved successfully.');
         setTimeout(() => {
           this.router.navigate(['/pages/admin/tabs/advertisers']);
-        }, 5000)
+        }, 5000);
       } else {
         this.showToast('error', 'Error', result.messasge);
       }
-    })
+    });
   }
 
   cancelClicked(event) {
-    
+    this.router.navigate(['/pages/admin/tabs/users']);
   }
 
   private showToast(type: string, title: string, body: string) {

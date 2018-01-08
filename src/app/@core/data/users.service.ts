@@ -4,9 +4,9 @@ import 'rxjs/add/observable/of';
 import 'rxjs/add/observable/forkJoin';
 
 import { AdxApiService } from '../api/adx-api.service';
-import { HelperService } from '../utils/helper.service';
+// import { HelperService } from '../utils/helper.service';
 
-import { User, ProfileData, IdName, NewUser } from '../models';
+import { User, ProfileData, IdName } from '../models';
 
 // let counter = 0;
 
@@ -23,7 +23,7 @@ export class UserService {
 
   // private userArray: any[];
 
-  constructor(protected api: AdxApiService, private hellper: HelperService) {
+  constructor(protected api: AdxApiService) {
   }
 
   getUsers(): Observable<any> {
