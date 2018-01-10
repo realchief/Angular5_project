@@ -27,6 +27,6 @@ export class AdminTabComponent implements OnInit {
   }
 
   onChangeTab($event) {
-    console.log($event);
+    // console.log($event);
   }
 }

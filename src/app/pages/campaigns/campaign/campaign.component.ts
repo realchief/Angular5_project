@@ -23,6 +23,6 @@ export class CampaignComponent implements OnInit {
   }
 
   onChangeTab($event) {
-    console.log($event);
+    // console.log($event);
   }
 }

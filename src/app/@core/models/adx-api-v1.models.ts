@@ -174,12 +174,16 @@ export class Organization2 {
   agency_user_id: string = '';
   balance: number = 0;
   email: string = '';
-  id: string = '';
+  id: number = 0;
   min_allowed_balance: number = 0;
   name: string = '';
   subdomain_id: number = 0;
   username: string = '';
   utype: number = 0;
+
+  constructor(values: Object = {}) {
+    Object.assign(this, values);
+  }
 }
 
 export class Report {

@@ -14,6 +14,7 @@ import {
   Constants,
   NewUser,
   Organization,
+  Organization2,
   Payment,
   Profile,
   Report,
@@ -133,14 +134,14 @@ export class AdxApiService {
   }
 
   // Admin - Organizations
-  public getOrganizations(limit: number, offset: number): Observable<Organization[]> {
+  public getOrganizations(limit: number, offset: number): Observable<Organization2[]> {
     const params = new HttpParams()
       .set('limit', String(limit))
       .set('offset', String(offset));
 
     return this.http
       .get<GetOrganizationInterface2>(`${API_MODULE_URL}/UsersModule/organizations/`, { params })
-      .map(result => result.response.data.map(item => new Organization(item)))
+      .map(result => result.response.data.map(item => new Organization2(item)))
       .catch(this.handleError);
   }
 

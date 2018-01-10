@@ -70,7 +70,7 @@ export class AdminUsersListComponent {
   }
 
   onCreate($event): void {
-
+    this.router.navigate(['/pages/admin/users/create']);
   }
 
   onEdit($event): void {

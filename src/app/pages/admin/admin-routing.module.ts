@@ -28,6 +28,9 @@ const routes: Routes = [{
     path: 'advertisers/:id/edit',
     component: AdminAdvertiserFormComponent,
   }, {
+    path: 'users/create',
+    component: AdminUserFormComponent,
+  }, {
     path: 'users/:id/edit',
     component: AdminUserFormComponent,
   }, {

@@ -8,6 +8,7 @@ import {
   Constants,
   NewUser,
   Organization,
+  Organization2,
   Payment,
   User2,
   Permission2,
@@ -51,7 +52,7 @@ export class AdminDataService {
     return this.api.updateOrganization(organization);
   }
 
-  getOrganizations(limit: number, offset: number): Observable<Organization[]> {
+  getOrganizations(limit: number, offset: number): Observable<Organization2[]> {
     return this.api.getOrganizations(limit, offset);
   }
 

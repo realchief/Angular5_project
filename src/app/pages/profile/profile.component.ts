@@ -28,6 +28,13 @@ export class ProfileComponent implements OnInit {
 
   saveClicked(event) {
     // todo: check password
+    if (this.oldPassword && this.newPassword) {
+      if (this.newPassword !== this.confirmPassword) {
+        this.showToast('error', 'Error', 'Password mismatch');
+        return;
+      }
+    }
+
     const profileData = this.oldPassword !== '' ?
       {
         'User_Me[old_password]': this.oldPassword,
@@ -37,8 +44,6 @@ export class ProfileComponent implements OnInit {
       {
         'Notifications[shortage]': this.notifications_shortage,
       };
-
-    console.log(profileData);
 
     this.service.updateProfile(profileData).subscribe(result => {
       if (result.success) {
